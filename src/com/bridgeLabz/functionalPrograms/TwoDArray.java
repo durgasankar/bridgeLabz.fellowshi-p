@@ -4,6 +4,7 @@ import com.bridgeLabz.utility.Array;
 import com.bridgeLabz.utility.Util;
 
 public class TwoDArray {
+
 	public static void main(String[] args) {
 		System.out.println("Enter total rows : ");
 		int rows = Util.scanner.nextInt();
@@ -19,7 +20,7 @@ public class TwoDArray {
 			}
 		}
 
-		Array.print2DIntegerArray(arr);
+		Array.print2DArray(arr);
 
 	}
 

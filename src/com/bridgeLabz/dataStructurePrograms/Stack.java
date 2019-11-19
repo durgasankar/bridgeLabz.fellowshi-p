@@ -7,15 +7,14 @@ import java.util.EmptyStackException;
  * LIFO => Last In First Out THis class has certain functions like length =>
  * length of the list isEmpty => which checks whether the list is empty or not.
  * push => insert a data to the list. pop => used to remove the last entered
- * data from the list. pick => check the data entered at last. print => to get
+ * data from the list. peek => check the data entered at last. print => to get
  * the list of all the data present in the list.
  * 
  * @author Durgasankar Mishra
- * @version 1.0
+ * @version 11.0.5
  * @created 2019-11-16
  */
-public class Stack {
-	private int length;
+public class Stack extends CommonElements implements Common {
 	private Node top;
 
 	/**
@@ -27,27 +26,6 @@ public class Stack {
 	public Stack() {
 		this.length = 0;
 		this.top = null;
-	}
-
-	/**
-	 * it check the length of the stacks.
-	 * 
-	 * @return integer value.
-	 */
-	public int length() {
-		return length;
-	}
-
-	/**
-	 * it checks whether the stack is empty or not .
-	 * 
-	 * @return boolean value.
-	 */
-	public boolean isEmpty() {
-		if (length() == 0) {
-			return true;
-		}
-		return false;
 	}
 
 	/**
@@ -85,24 +63,6 @@ public class Stack {
 	}
 
 	/**
-	 * if list is not empty then a temporary reference variable points to top of
-	 * list. while loop iterate till the top points to null. while iterating it
-	 * prints the data which is pointed by its reference variable. reference
-	 * variable pointer is pointed to its next Node.
-	 */
-	public void print() {
-		if (top == null) {
-			System.out.println("Stack is Empty!");
-		} else {
-			Node current = top;
-			while (current != null) {
-				System.out.println(current.data);
-				current = current.next;
-			}
-		}
-	}
-
-	/**
 	 * if the list is not empty it will return the value which is pointed by top.
 	 * 
 	 * @return the data which is pointed by top
@@ -116,20 +76,25 @@ public class Stack {
 		}
 	}
 
-	public static void main(String[] args) {
-		Stack stack = new Stack();
-		stack.push(50);
-		stack.push(60);
-		stack.push(70);
-		stack.push(80);
-		stack.push(90);
-		stack.push(100);
-		System.out.println("Length : " + stack.length());
-		stack.print();
-		stack.pop();
-		System.out.println("Length : " + stack.length());
-		stack.print();
-		System.out.println("Top points to => " + stack.peek());
+	/**
+	 * if list is not empty then a temporary reference variable points to top of
+	 * list. while loop iterate till the top points to null. while iterating it
+	 * prints the data which is pointed by its reference variable. reference
+	 * variable pointer is pointed to its next Node.
+	 */
+	@Override
+	public void print() {
+		if (top == null) {
+			System.out.println("Stack is Empty!");
+		} else {
+			Node current = top;
+			while (current != null) {
+				System.out.print(current.data + " --> ");
+				current = current.next;
+			}
+			System.out.println("null");
+		}
+
 	}
 
 }

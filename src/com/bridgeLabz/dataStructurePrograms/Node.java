@@ -5,11 +5,11 @@ package com.bridgeLabz.dataStructurePrograms;
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-16
- * @version 1.0
+ * @version 11.05.0
  */
 public class Node {
-	int data;
-	Node next;
+	protected int data;
+	protected Node next;
 
 	/**
 	 * constructor to initialize the class variables during object creation.

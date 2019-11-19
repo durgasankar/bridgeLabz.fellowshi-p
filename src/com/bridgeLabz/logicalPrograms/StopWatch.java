@@ -1,10 +1,25 @@
 package com.bridgeLabz.logicalPrograms;
 
+import java.util.InputMismatchException;
+
+import com.bridgeLabz.utility.Util;
+
 public class StopWatch {
 
 	private long startTime = 0;
 	private long stopTime = 0;
 	private boolean running = false;
+
+	// when using this method it is not working on start time. result => 0:0:0
+//	private String timeFormat(long timeInMillis) {
+//		long millis = stopTime % 1000;
+//		long second = (stopTime / 1000) % 60;
+//		long minute = (stopTime / (1000 * 60)) % 60;
+//		long hour = (stopTime / (1000 * 60 * 60)) % 24;
+//
+//		String time = String.format("%02d h :%02d m :%02d.%d s ", hour, minute, second, millis);
+//		return time;
+//	}
 
 	/**
 	 * it captures the current System time in milliseconds.
@@ -13,7 +28,15 @@ public class StopWatch {
 	 */
 	public void start() {
 		this.startTime = System.currentTimeMillis();
-		System.out.println("Start time is : " + startTime);
+
+		long millis = startTime % 1000;
+		long second = (startTime / 1000) % 60;
+		long minute = (startTime / (1000 * 60)) % 60;
+		long hour = (startTime / (1000 * 60 * 60)) % 24;
+
+		String time = String.format("%02d h :%02d m :%02d.%d s ", hour, minute, second, millis);
+
+		System.out.println("Start time is : " + time);
 		running = true;
 	}
 
@@ -24,8 +47,16 @@ public class StopWatch {
 	 */
 	public void stop() {
 		this.stopTime = System.currentTimeMillis();
-		System.out.println("Stop time is : " + stopTime);
-		this.running = false;
+		long millis = stopTime % 1000;
+		long second = (stopTime / 1000) % 60;
+		long minute = (stopTime / (1000 * 60)) % 60;
+		long hour = (stopTime / (1000 * 60 * 60)) % 24;
+
+		String time = String.format("%02d h :%02d m :%02d.%d s ", hour, minute, second, millis);
+
+		System.out.println("Stop time is : " + time);
+
+		running = false;
 	}
 
 	/**
@@ -73,16 +104,31 @@ public class StopWatch {
 	 * Seconds.
 	 * 
 	 * @param args
-	 * @throws InterruptedException
+	 * @throws InputMismatchException if entered value is not numeric
 	 */
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 
 		StopWatch myWatch = new StopWatch();
 
-		myWatch.start();
-		Thread.sleep(8000);
-		myWatch.stop();
-
+		System.out.println("Press '1' to Start Time: ");
+		try {
+			if (Util.scanner.nextInt() == 1) {
+				myWatch.start();
+			} else {
+				System.out.println("please Enter a valid input");
+			}
+			System.out.println();
+			System.out.println("Press '2' to Stop Time: ");
+			if (Util.scanner.nextInt() == 2) {
+				myWatch.stop();
+			} else {
+				System.out.println("please Enter a valid input");
+			}
+		} catch (InputMismatchException e) {
+			System.out.println(e + "\nplease enter a Numeric Integer value\n");
+		} finally {
+			Util.scanner.close();
+		}
 		long tMilliSec = myWatch.timeEllapsedInMilliSecond();
 		System.out.println("Time in MilliSec : " + tMilliSec + " ms");
 		long tSec = myWatch.timeEllapsedInSecond();

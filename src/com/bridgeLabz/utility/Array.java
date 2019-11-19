@@ -12,10 +12,10 @@ public class Array {
 	 * 
 	 * @param it takes 1D Integer array as input
 	 */
-	public static void print1DIntegerArray(int array[]) {
-		for (int i = 0; i < array.length; i++)
-			System.out.print(array[i] + " ");
-		System.out.println();
+	public static void print1DArray(int array[]) {
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(array[i]);
+		}
 	}
 
 	/**
@@ -23,44 +23,20 @@ public class Array {
 	 * 
 	 * @param array takes 1D String array as input
 	 */
-	public static void print1DStringArray(String array[]) {
+	public static void print1DArray(String array[]) {
 		for (int i = 0; i < array.length; i++) {
-			System.out.print(array[i] + " ");
+			System.out.println(array[i]);
 		}
-		System.out.println();
 	}
 
-	/**
-	 * This is only applicable on sorted array and it will find the integer value
-	 * and returns its position as per Zero index.
-	 * 
-	 * @param inputArray take String Array as parameter.
-	 * @param key        is the value which to be Searched.
-	 * @return the position of the searching Element.
-	 */
-	public static int binarySearchInteger(int[] inputArray, int key) {
-		int start = 0;
-		int end = inputArray.length - 1;
-		while (start <= end) {
-			int mid = (start + end) / 2;
-			if (key == inputArray[mid]) {
-				return mid;
-			}
-			if (key < inputArray[mid]) {
-				end = mid - 1;
-			} else {
-				start = mid + 1;
-			}
-		}
-		return -1;
-	}
+	
 
 	/**
 	 * prints the values of 2D array
 	 * 
 	 * @param it takes a parameter integer 2D array as input
 	 */
-	public static void print2DIntegerArray(int[][] array) {
+	public static void print2DArray(int[][] array) {
 		for (int i = 0; i < array.length; i++) {
 			for (int j = 0; j < array[i].length; j++) {
 				System.out.print(array[i][j] + " ");

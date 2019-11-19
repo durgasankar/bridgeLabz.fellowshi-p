@@ -1,13 +1,12 @@
 package com.bridgeLabz.basicCorePrograms;
 
-import java.util.Scanner;
+import com.bridgeLabz.utility.Util;
 
 public class HarmonicNumber {
-	private static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		System.out.println("Emter the nth term");
-		int term = sc.nextInt();
+		int term = Util.scanner.nextInt();
 		if (term > 0) {
 			double value = harmonicNumber(term);
 			System.out.println("Harmonic value upto " + term + " term = " + value);

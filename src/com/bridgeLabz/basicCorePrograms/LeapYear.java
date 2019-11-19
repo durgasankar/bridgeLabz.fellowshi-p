@@ -6,14 +6,13 @@ public class LeapYear {
 	public static void main(String[] args) {
 		System.out.println("Enter a year");
 		int year = Util.scanner.nextInt();
-		
-		if(Util.isLeapYear(year) == true) {
+
+		if (Util.isLeapYear(year) == true) {
 			System.out.println(year + " is a leap year");
-		}else {
+		} else {
 			System.out.println(year + " not a leap year");
 		}
-		
+
 	}
-	
 
 }
