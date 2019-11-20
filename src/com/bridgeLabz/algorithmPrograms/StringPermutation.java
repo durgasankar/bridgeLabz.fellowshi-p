@@ -1,10 +1,12 @@
 package com.bridgeLabz.algorithmPrograms;
 
+import com.bridgeLabz.utility.Util;
+
 /**
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-19
- * @version 11.05.0
+ * @version 11.0.5
  */
 public class StringPermutation {
 	/**
@@ -62,5 +64,20 @@ public class StringPermutation {
 		char temp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = temp;
+	}
+
+	/**
+	 * execution main method
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		StringPermutation permutation = new StringPermutation();
+		System.out.println("Enter the String to be permute : ");
+		String s = Util.scanner.nextLine();
+		Util.scanner.close();
+		char[] ch = s.toCharArray();
+		System.out.println("Permutations are :");
+		permutation.permutation(ch, 0, ch.length);
 	}
 }

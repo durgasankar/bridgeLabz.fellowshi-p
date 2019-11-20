@@ -29,8 +29,6 @@ public class Array {
 		}
 	}
 
-	
-
 	/**
 	 * prints the values of 2D array
 	 * 
