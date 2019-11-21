@@ -1,16 +1,18 @@
 package com.bridgeLabz.utility;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
  * It contains basic reusable methods like => isLeapYear, => isAnagram, =>
- * isPallindrome, => isPrime, => readFiles,
+ * isPallindrome, => isPrime, => powerOfTwo, => writeToFile, => read file
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-13
@@ -19,6 +21,18 @@ import java.util.Scanner;
 public class Util {
 
 	public static Scanner scanner = new Scanner(System.in);
+
+	/**
+	 * find 2^power given by user
+	 * 
+	 * @param power as input
+	 * @return integer value
+	 * @created 2019-11-21
+	 */
+	public static int powerOfTwo(int power) {
+		int result = (int) Math.pow(2, power);
+		return result;
+	}
 
 	/**
 	 * check for leap year and returns boolean value if the year lies between 1000
@@ -49,6 +63,7 @@ public class Util {
 	 * @param firstString  as parameter from user.
 	 * @param secondString as parameter from user.
 	 * @return boolean value if it satisfies the conditions
+	 * @created 2019-11-20
 	 */
 	public static boolean isAnagram(String firstString, String secondString) {
 		char[] ch1 = firstString.toLowerCase().replaceAll(" ", "").toCharArray();
@@ -103,7 +118,7 @@ public class Util {
 	 * {@code only works for if number is greater than 1}
 	 * 
 	 * @param number integer value to check whether prime or not.
-	 * @return boolean value is satisfies the required conditions.
+	 * @return boolean value.
 	 * @created 2019-11-20
 	 */
 	public static boolean isPrime(int number) {
@@ -136,30 +151,76 @@ public class Util {
 	 * @return String array of words on the basis of splitting.
 	 * @created 2019-11-19
 	 */
-	public static String[] readFiles(String fileName) {
+
+	/**
+	 * takes input parameter date in String and returns date in Date format.
+	 * 
+	 * @param date as String format.
+	 * @return date in dd/mm/yyyy format
+	 */
+	public static Date printDate(String date) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+		try {
+			return dateFormat.parse(date);
+		} catch (ParseException e) {
+			return null;
+		}
+
+	}
+
+	/**
+	 * takes file location as parameter and read the file in string format.
+	 * 
+	 * @param fileName as parameter to locate the file
+	 * @return String data of file after reading.
+	 * @created 2019-11-21
+	 */
+	public static String readFile(String fileName) {
 		File file = new File(fileName);
-		FileReader fileReader = null;
-		BufferedReader bufferReader;
-		String readLine = "";
-		String tempString;
+		Scanner sc = null;
+		String data = "";
 		try {
-			fileReader = new FileReader(file);
-		} catch (FileNotFoundException e) {
-			System.out.println("File Not found!");
-		}
-		bufferReader = new BufferedReader(fileReader);
+			sc = new Scanner(file);
 
-		try {
-			while ((tempString = bufferReader.readLine()) != null) {
-				readLine += tempString;
+			while (sc.hasNextLine()) {
+				data += sc.nextLine();
 			}
-			bufferReader.close();
-		} catch (IOException e) {
-			System.out.println(e + " back trace exception");
+		} catch (FileNotFoundException e) {
+			System.out.println(e);
+		} finally {
+			sc.close();
 		}
-		String[] words = readLine.split(",");
+		return data;
+	}
 
-		return words;
+	/**
+	 * Takes input data and file location as i/p and writes in the file if file not
+	 * present it creates and write in it. if present it simply writes in it.
+	 * 
+	 * @param data     as input String to be written in document.
+	 * @param fileName as address of the file.
+	 * @returns nothing because after writing it closes the file
+	 * @created 2019-11-21
+	 */
+	public static void writeToFile(String data, String fileName) {
+		File file = new File(fileName);
+		FileWriter writer = null;
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			// Writes the content to the file
+			writer = new FileWriter(file);
+			writer.write(data);
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

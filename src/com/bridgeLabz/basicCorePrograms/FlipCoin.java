@@ -8,7 +8,7 @@ import com.bridgeLabz.utility.Util;
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-14
- * @version 11.05.0
+ * @version 11.0.5
  */
 
 public class FlipCoin {

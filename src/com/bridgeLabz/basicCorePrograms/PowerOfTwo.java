@@ -11,7 +11,7 @@ public class PowerOfTwo {
 		// 11
 		System.out.println("Enter the power of Two");
 		int power = sc.nextInt();
-		int result = powerOfTwo(power);
+		int result = Util.powerOfTwo(power);
 
 		if (power >= 1 && power <= 31) {
 			System.out.println("2 ^ " + power + " = " + result);
@@ -26,9 +26,6 @@ public class PowerOfTwo {
 		}
 	}
 
-	private static int powerOfTwo(int power) {
-		int result = (int) Math.pow(2, power);
-		return result;
-	}
+	
 
 }

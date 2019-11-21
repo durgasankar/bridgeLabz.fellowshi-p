@@ -1,6 +1,8 @@
 package com.bridgeLabz.dataStructurePrograms;
+
 /**
- * It has some common methods which is exetended in order to other classes.
+ * It has some common methods which is extended in order to other classes.
+ * 
  * @author Durgasankar Mishra
  * @created 2019-11-18
  * @version 11.05.0
@@ -24,10 +26,7 @@ public class CommonElements {
 	 * @return boolean value.
 	 */
 	public boolean isEmpty() {
-		if (length() == 0) {
-			return true;
-		}
-		return false;
+		return length() == 0;
 	}
 
 }

@@ -1,11 +1,14 @@
 package com.bridgeLabz.utility;
 
+import java.util.List;
+
 /**
  * all type of sorting algorithms. bubble sort , merge sort, insertion sort and
- * all.
+ * all of generic type insertionSort.
  * 
  * @author Durgasankar Mishra
- *
+ * @created 2019-11-20
+ * @version 11.0.5
  */
 public class Sorting {
 	/**
@@ -13,6 +16,7 @@ public class Sorting {
 	 * 
 	 * @param arr array as the parameter
 	 * @return sorted String array
+	 * @created 2019-11-20
 	 */
 	public static String[] insertionSort(String[] array) {
 		for (int i = 0; i < array.length; i++) {
@@ -33,6 +37,7 @@ public class Sorting {
 	 * 
 	 * @param array array as the parameter
 	 * @return sorted integer array
+	 * @created 2019-11-20
 	 */
 	public static int[] insertionSort(int[] array) {
 		for (int i = 1; i < array.length; i++) {
@@ -56,6 +61,7 @@ public class Sorting {
 	 * 
 	 * @param array integer array as parameter
 	 * @return sorted array of integer type.
+	 * @created 2019-11-19
 	 */
 	public static int[] bubbleSort(int array[]) {
 		int n = array.length;
@@ -71,6 +77,60 @@ public class Sorting {
 		}
 		return array;
 
+	}
+
+	/**
+	 * swap first element with second element and store it in a List of any type.
+	 * 
+	 * @param <G>       generic class type as input Parameter.
+	 * @param list      for storing the data in Collections type.
+	 * @param firstPos  as a parameter which need to be swapped.
+	 * @param secondPos as parameter for swapping
+	 * @created 2019-11-21
+	 */
+	private static <G extends Comparable<G>> void swap(List<G> list, int firstPos, int secondPos) {
+		G temp = list.get(firstPos);
+		list.set(firstPos, list.get(secondPos));
+		list.set(secondPos, temp);
+	}
+
+	/**
+	 * Generic Type Class implements Comparable interface which has one comparedTo
+	 * method which works by returning an integer value that is either positive,
+	 * negative, or zero. This loops will continue unless each value is sorted .
+	 * after sorting all elements it will return the list
+	 * 
+	 * @param <G>  generic class type as input Parameter.
+	 * @param list for storing the data in Collections type.
+	 * @return sorted generic type data in collection type.
+	 * @created 2019-11-21
+	 */
+	public static <G extends Comparable<G>> List<G> selectionSort(List<G> list) {
+		for (int i = 0; i < list.size(); i++) {
+			int minPos = -1;
+			G minValue = list.get(i);
+			for (int j = i + 1; j < list.size(); j++) {
+				G secondPosition = list.get(j);
+				/**
+				 * works by returning an integer value that is either positive, negative, or
+				 * zero. It compares the object by making the call to the object that is the
+				 * argument. A negative number means that the object making the call is “less”
+				 * than the argument.
+				 */
+				if (minValue.compareTo(secondPosition) > 0) {
+					minPos = j;
+					minValue = list.get(j);
+				}
+			}
+			/**
+			 * if minimum value returned is greater than 0 it swap the searching element
+			 * with minimum position.
+			 */
+			if (minPos >= 0) {
+				swap(list, i, minPos);
+			}
+		}
+		return list;
 	}
 
 }
