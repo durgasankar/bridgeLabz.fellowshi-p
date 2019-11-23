@@ -12,7 +12,8 @@ import java.util.Scanner;
 
 /**
  * It contains basic reusable methods like => isLeapYear, => isAnagram, =>
- * isPallindrome, => isPrime, => powerOfTwo, => writeToFile, => read file
+ * isPallindrome, => isPrime, => powerOfTwo, => writeToFile, => read file, =>
+ * writeFile, => printDate, => getFormattedDate
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-13
@@ -30,7 +31,10 @@ public class Util {
 	 * @created 2019-11-21
 	 */
 	public static int powerOfTwo(int power) {
-		int result = (int) Math.pow(2, power);
+		int result = 0;
+		if (power >= 0) {
+			result = (int) Math.pow(2, power);
+		}
 		return result;
 	}
 
@@ -66,8 +70,8 @@ public class Util {
 	 * @created 2019-11-20
 	 */
 	public static boolean isAnagram(String firstString, String secondString) {
-		char[] ch1 = firstString.toLowerCase().replaceAll(" ", "").toCharArray();
-		char[] ch2 = secondString.toLowerCase().replaceAll(" ", "").toCharArray();
+		char[] ch1 = firstString.toLowerCase().trim().replaceAll(" ", "").toCharArray();
+		char[] ch2 = secondString.toLowerCase().trim().replaceAll(" ", "").toCharArray();
 
 		if (ch1.length != ch2.length) {
 			return false;
@@ -92,24 +96,28 @@ public class Util {
 	 * @created 2019-11-20
 	 */
 	public static boolean isPallindrome(String inputString) {
-		String tempString = inputString;
-		char[] ch1 = inputString.toCharArray();
-		char[] ch2 = tempString.toCharArray();
-//		System.out.println("Before : " + inputString);
-		int lastChar = ch1.length - 1;
-		/**
-		 * first character is swapped with last character . loop continues till mid
-		 * character. if odd then mid char is not swapped.
-		 */
-		for (int i = 0; i < ch1.length / 2; i++) {
-			char temp = ch1[i];
-			ch1[i] = ch1[lastChar - i];
-			ch1[lastChar - i] = temp;
-		}
-		if (Arrays.equals(ch1, ch2)) {
-			return true;
-		} else {
+		if(inputString.length() == 0) {
 			return false;
+		}else {
+			String tempString = inputString;
+			char[] ch1 = inputString.toCharArray();
+			char[] ch2 = tempString.toCharArray();
+//			System.out.println("Before : " + inputString);
+			int lastChar = ch1.length - 1;
+			/**
+			 * first character is swapped with last character . loop continues till mid
+			 * character. if odd then mid char is not swapped.
+			 */
+			for (int i = 0; i < ch1.length / 2; i++) {
+				char temp = ch1[i];
+				ch1[i] = ch1[lastChar - i];
+				ch1[lastChar - i] = temp;
+			}
+			if (Arrays.equals(ch1, ch2)) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 
@@ -157,6 +165,7 @@ public class Util {
 	 * 
 	 * @param date as String format.
 	 * @return date in dd/mm/yyyy format
+	 * @created 2019-11-22
 	 */
 	public static Date printDate(String date) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
@@ -165,6 +174,18 @@ public class Util {
 		} catch (ParseException e) {
 			return null;
 		}
+
+	}
+
+	/**
+	 * takes date as input and returns formated date.
+	 * 
+	 * @param date in String format.
+	 * @return formated date in date format.
+	 */
+	public static String getFormatedDate(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+		return sdf.format(date);
 
 	}
 
