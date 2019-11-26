@@ -13,6 +13,7 @@ import java.util.EmptyStackException;
  * @author Durgasankar Mishra
  * @version 11.0.5
  * @created 2019-11-25
+ * @param <G> generic type
  */
 public class Stack<G> {
 	private Node<G> top;
@@ -86,7 +87,7 @@ public class Stack<G> {
 	 * 
 	 * @return the data of generic type
 	 */
-	public G peak(G data) {
+	public G peak() {
 		if (!isEmpty()) {
 			return top.data;
 		} else {
