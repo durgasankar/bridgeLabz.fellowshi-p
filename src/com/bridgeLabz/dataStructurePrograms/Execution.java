@@ -1,5 +1,6 @@
 package com.bridgeLabz.dataStructurePrograms;
 
+import com.bridgeLabz.dataStructurePrograms.generics.Deque;
 import com.bridgeLabz.dataStructurePrograms.generics.LinkedList;
 
 public class Execution {
@@ -42,11 +43,11 @@ public class Execution {
 		list2.insert("bharath", 4);
 		list2.insertAtStart("durga");
 		System.out.println("Searching Element present : " + list2.search("durga"));
-		
+
 		list2.print();
 		list2.deleteData("rama");
 		System.out.println("length = " + list2.length());
-		
+
 		list2.print();
 
 		list2.delete();
@@ -58,7 +59,19 @@ public class Execution {
 		System.out.println("Searching Element present : " + list2.search("rama"));
 		list2.deleteData("bharath");
 		list2.print();
+
+		Deque<Integer> deque = new Deque<Integer>();
+		deque.addFront(20);
+		deque.addFront(10);
+		deque.addLast(30);
+		deque.addLast(40);
+		deque.display();
 		
+		deque.deleteFirst();
+		deque.deleteLast();
+		
+		deque.display();
+
 	}
 
 }

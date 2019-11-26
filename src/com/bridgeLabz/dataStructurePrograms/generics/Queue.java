@@ -120,6 +120,9 @@ public class Queue<G> {
 		return end.data;
 	}
 
+	/**
+	 * prints the data present in the list starting from first.
+	 */
 	public void print() {
 		if (isEmpty()) {
 			System.out.println("Empty List...");

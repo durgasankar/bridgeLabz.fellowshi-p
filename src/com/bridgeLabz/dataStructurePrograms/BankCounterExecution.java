@@ -93,7 +93,6 @@ public class BankCounterExecution {
 		int queueLength = line.size();
 		while (queueLength > 0 && !isQuitApp) {
 			System.out.println("Please enter your account number to start application :");
-			System.out.println();
 			String accountNumber = Util.scanner.next();
 			bankOperations(accountNumber);
 			System.out.println("Remaining people in the queue : ");
