@@ -1,5 +1,6 @@
 package com.bridgeLabz.dataStructurePrograms;
 
+import com.bridgeLabz.utility.Array;
 import com.bridgeLabz.utility.Util;
 
 /**
@@ -12,36 +13,27 @@ import com.bridgeLabz.utility.Util;
  * @version 11.0.5
  */
 public class PrimeNumberInRange {
-	/**
-	 * check the data of 2d array and prints it.
-	 * 
-	 * @param array 2d array as input parameter
-	 */
-	private static void print(int[][] array) {
-		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array[i].length; j++) {
-				if (array[i][j] != 0)
-					System.out.print(array[i][j] + " ");
-			}
-			System.out.println();
-		}
-	}
 
-	public static void main(String[] args) {
-		int[][] primeNumberArray = new int[10][100];
-		int number = 1;
-		while (number < 1000) {
-			for (int i = 0; i < primeNumberArray.length; i++) {
-				for (int j = 0; j < primeNumberArray[i].length; j++) {
-					if (Util.isPrime(number)) {
-						primeNumberArray[i][j] = number;
+	public int[][] primechecker(int[][] arr, int startingNumber) {
+		startingNumber = 1;
+		while (startingNumber < 1000) {
+			for (int i = 0; i < arr.length; i++) {
+				for (int j = 0; j < arr[i].length; j++) {
+					if (Util.isPrime(startingNumber)) {
+						arr[i][j] = startingNumber;
 					}
-					number++;
+					startingNumber++;
 				}
 			}
 		}
-		print(primeNumberArray);
+		return arr;
+	}
 
+	public static void main(String[] args) {
+		PrimeNumberInRange primeChecking = new PrimeNumberInRange();
+		int[][] arr = new int[10][100];
+		primeChecking.primechecker(arr, 1);
+		Array.print2DArray(arr);
 	}
 
 }

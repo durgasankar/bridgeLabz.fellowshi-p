@@ -13,7 +13,8 @@ import java.util.Scanner;
 /**
  * It contains basic reusable methods like => isLeapYear, => isAnagram, =>
  * isPallindrome, => isPrime, => powerOfTwo, => writeToFile, => read file, =>
- * writeFile, => printDate, => getFormattedDate
+ * writeFile, => printDate, => getFormattedDate, => reverseString, =>
+ * countDigits
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-13
@@ -96,9 +97,9 @@ public class Util {
 	 * @created 2019-11-20
 	 */
 	public static boolean isPallindrome(String inputString) {
-		if(inputString.length() == 0) {
+		if (inputString.length() == 0) {
 			return false;
-		}else {
+		} else {
 			String tempString = inputString;
 			char[] ch1 = inputString.toCharArray();
 			char[] ch2 = tempString.toCharArray();
@@ -242,6 +243,79 @@ public class Util {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Takes a new String as input and after revering returns the String value.
+	 * 
+	 * @param str as String input
+	 * @return String value
+	 * @created 2019-11-27
+	 */
+	public static String reverseString(String str) {
+		String reverse = "";
+		for (int i = str.length() - 1; i >= 0; i--) {
+			reverse += str.charAt(i);
+		}
+		return reverse;
+	}
+
+	/**
+	 * to count the digits in a number
+	 * 
+	 * @param number as input to count digits
+	 * @return Integer value.
+	 * @created 2019-11-27
+	 */
+	public static int countDigits(int number) {
+		int count = 0;
+		while (number != 0) {
+			number = number / 10;
+			++count;
+		}
+		return count;
+	}
+
+	/**
+	 * checks whether lengths are equal or not, if lengths are equal it fetch and
+	 * add all digits to array and after sorting digits it checks whether all digits
+	 * are equal or not if equal it returns boolean value.
+	 * 
+	 * @param firstNumber  as parameter from user
+	 * @param secondNumber as parameter from user
+	 * @return boolean value.
+	 * @created 2019-11-27
+	 */
+	public static boolean isAnagram(int firstNumber, int secondNumber) {
+		int firstNumberLength = countDigits(firstNumber);
+		int secondNumberLength = countDigits(secondNumber);
+		if (firstNumberLength != secondNumberLength) {
+			return false;
+		}
+		int i = 0;
+		int j = 0;
+		int[] firstNumArray = new int[firstNumberLength];
+		int[] secondNumArray = new int[secondNumberLength];
+		// store each digits of first number in array.
+		while (firstNumber != 0) {
+			int remainder = firstNumber % 10;
+			firstNumArray[i] = remainder;
+			firstNumber = firstNumber / 10;
+			i++;
+		}
+		// store each digits of second number in array.
+		while (secondNumber != 0) {
+			int remainder = secondNumber % 10;
+			secondNumArray[j] = remainder;
+			secondNumber = secondNumber / 10;
+			j++;
+		}
+		Arrays.sort(firstNumArray);
+		Arrays.sort(secondNumArray);
+
+		if (Arrays.equals(firstNumArray, secondNumArray))
+			return true;
+		return false;
 	}
 
 }

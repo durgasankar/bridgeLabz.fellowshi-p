@@ -22,7 +22,7 @@ public class PrimeAnagramPallindrome {
 			if (Util.isPrime(number)) {
 				String StringNumber = Integer.toString(number);
 				if (Util.isPallindrome(StringNumber)) {
-					if (Util.isAnagram(StringNumber, StringNumber)) {
+					if (Util.isAnagram(StringNumber, Util.reverseString(StringNumber))) {
 						System.out.println(Integer.parseInt(StringNumber));
 					}
 				}
