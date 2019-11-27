@@ -310,6 +310,7 @@ public class Util {
 			secondNumber = secondNumber / 10;
 			j++;
 		}
+		// sorting the digits
 		Arrays.sort(firstNumArray);
 		Arrays.sort(secondNumArray);
 

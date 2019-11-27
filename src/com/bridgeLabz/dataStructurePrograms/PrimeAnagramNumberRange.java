@@ -12,7 +12,6 @@ import com.bridgeLabz.utility.Util;
  * @version 11.0.5
  */
 public class PrimeAnagramNumberRange {
-
 	public static void main(String[] args) {
 		// initialization of array
 		int arr[] = new int[1000];

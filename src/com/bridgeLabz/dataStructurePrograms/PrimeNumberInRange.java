@@ -6,7 +6,7 @@ import com.bridgeLabz.utility.Util;
 /**
  * it checks the data if it is prime or not . if prime then it add the data in a
  * group of 100 elements till it reaches user define range data. if the number
- * is found to be prime then prints the data.
+ * is found to be prime then prints the data. in 2D array.
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-27
@@ -14,8 +14,8 @@ import com.bridgeLabz.utility.Util;
  */
 public class PrimeNumberInRange {
 
-	public int[][] primechecker(int[][] arr, int startingNumber) {
-		startingNumber = 1;
+	public int[][] primeChecker(int[][] arr) {
+		int startingNumber = 1;
 		while (startingNumber < 1000) {
 			for (int i = 0; i < arr.length; i++) {
 				for (int j = 0; j < arr[i].length; j++) {
@@ -31,9 +31,10 @@ public class PrimeNumberInRange {
 
 	public static void main(String[] args) {
 		PrimeNumberInRange primeChecking = new PrimeNumberInRange();
-		int[][] arr = new int[10][100];
-		primeChecking.primechecker(arr, 1);
-		Array.print2DArray(arr);
+		int[][] intPrimeArray = new int[10][100];
+		primeChecking.primeChecker(intPrimeArray);
+		System.out.println("Prime Numbers are :\n--------------------");
+		Array.print2DArray(intPrimeArray);
 	}
 
 }
