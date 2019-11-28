@@ -135,4 +135,50 @@ public class TestUtil {
 		assertEquals(true, Util.isPrime(11));
 	}
 
+	@Test
+	public void test_readFile_readingFile() {
+		assertEquals("raja", Util.readFile("C:\\Users\\durgasankar\\eclipse-workspace\\test.txt"));
+	}
+
+	@Test
+	public void test_reverseString_positiveInput() {
+		assertEquals("ajar", Util.reverseString("raja"));
+	}
+
+	@Test
+	public void test_reverseString_numericStringInput() {
+		assertEquals("321", Util.reverseString("123"));
+	}
+
+	@Test
+	public void test_reverseString_emptyInput() {
+		assertEquals("", Util.reverseString(""));
+	}
+
+	@Test
+	public void test_countDigit_countThreeDigit() {
+		assertEquals(3, Util.countDigits(125));
+	}
+
+	@Test
+	public void test_countDigit_countNegativeThreeDigit() {
+		assertEquals(3, Util.countDigits(-125));
+	}
+
+	@Test
+	public void test_isAnagram_Integer_positiveInput() {
+		assertTrue("palindrome condition", Util.isAnagram(103, 310));
+		assertTrue("random order", Util.isAnagram(103, 301));
+	}
+
+	@Test
+	public void test_isAnagram_Integer_negativeInput() {
+		assertFalse("Numeric negative input", Util.isAnagram(12345, 69870));
+	}
+
+	@Test
+	public void test_isAnagram_Integer_zeroAtInitialPosition() {
+		assertFalse("Numeric negative input", Util.isAnagram(205, 025));
+	}
+
 }

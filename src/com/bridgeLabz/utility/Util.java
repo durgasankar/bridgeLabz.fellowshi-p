@@ -208,7 +208,7 @@ public class Util {
 				data += sc.nextLine();
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println(e);
+			System.out.println("File Not Found");
 		} finally {
 			sc.close();
 		}
@@ -254,8 +254,10 @@ public class Util {
 	 */
 	public static String reverseString(String str) {
 		String reverse = "";
-		for (int i = str.length() - 1; i >= 0; i--) {
-			reverse += str.charAt(i);
+		if (!str.isEmpty()) {
+			for (int i = str.length() - 1; i >= 0; i--) {
+				reverse += str.charAt(i);
+			}
 		}
 		return reverse;
 	}
@@ -277,45 +279,27 @@ public class Util {
 	}
 
 	/**
-	 * checks whether lengths are equal or not, if lengths are equal it fetch and
-	 * add all digits to array and after sorting digits it checks whether all digits
-	 * are equal or not if equal it returns boolean value.
+	 * first two numbers are converted to String then to character array. if their
+	 * length matches then arrays are sorted then they are compared by if all
+	 * matches then anagram condition satisfies.
 	 * 
 	 * @param firstNumber  as parameter from user
 	 * @param secondNumber as parameter from user
 	 * @return boolean value.
-	 * @created 2019-11-27
+	 * @created 2019-11-28
 	 */
 	public static boolean isAnagram(int firstNumber, int secondNumber) {
-		int firstNumberLength = countDigits(firstNumber);
-		int secondNumberLength = countDigits(secondNumber);
-		if (firstNumberLength != secondNumberLength) {
+		char[] ch1 = Integer.toString(firstNumber).toCharArray();
+		char[] ch2 = Integer.toString(secondNumber).toCharArray();
+		if (ch1.length != ch2.length) {
 			return false;
+		} else {
+			Arrays.sort(ch1);
+			Arrays.sort(ch2);
+			if (Arrays.equals(ch1, ch2)) {
+				return true;
+			}
 		}
-		int i = 0;
-		int j = 0;
-		int[] firstNumArray = new int[firstNumberLength];
-		int[] secondNumArray = new int[secondNumberLength];
-		// store each digits of first number in array.
-		while (firstNumber != 0) {
-			int remainder = firstNumber % 10;
-			firstNumArray[i] = remainder;
-			firstNumber = firstNumber / 10;
-			i++;
-		}
-		// store each digits of second number in array.
-		while (secondNumber != 0) {
-			int remainder = secondNumber % 10;
-			secondNumArray[j] = remainder;
-			secondNumber = secondNumber / 10;
-			j++;
-		}
-		// sorting the digits
-		Arrays.sort(firstNumArray);
-		Arrays.sort(secondNumArray);
-
-		if (Arrays.equals(firstNumArray, secondNumArray))
-			return true;
 		return false;
 	}
 

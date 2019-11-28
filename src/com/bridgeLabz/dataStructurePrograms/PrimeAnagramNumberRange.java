@@ -13,17 +13,19 @@ import com.bridgeLabz.utility.Util;
  */
 public class PrimeAnagramNumberRange {
 	/**
+	 * takes 1D array as input and checks for anagram conditions if satisfied then
+	 * transfer all elements to 2D array and then finally display them.
 	 * 
-	 * @param arr
-	 * @return
+	 * @param inputArray as input 1D array
 	 */
-	public static int[][] anagramCheckerPrinter(int[] arr) {
-		int[] tempArray = new int[arr.length];
-		for (int k = 0; k < arr.length; k++) {
-			for (int j = k + 1; j < arr.length; j++) {
-				if (Util.isAnagram(arr[k], arr[j]) && (arr[k] != 0 && arr[j] != 0)) {
+	public static void anagramCheckerPrinter(int[] inputArray) {
+		int[] tempArray = new int[inputArray.length];
+		for (int k = 0; k < inputArray.length; k++) {
+			for (int j = k + 1; j < inputArray.length; j++) {
+				if (Util.isAnagram(inputArray[k], inputArray[j]) && (inputArray[k] != 0 && inputArray[j] != 0)) {
 					// System.out.println(arr[k] + " " + arr[j]);
-					tempArray[k] = arr[k];
+					//transfered all elements to temporary 1D array.
+					tempArray[k] = inputArray[k];
 				}
 			}
 		}
@@ -31,17 +33,16 @@ public class PrimeAnagramNumberRange {
 		 * printing of 2D array.
 		 */
 		int x = 0;
-		int[][] f1 = new int[10][100];
+		int[][] twoDArray = new int[10][100];
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 100; j++) {
-				f1[i][j] = tempArray[x];
+				twoDArray[i][j] = tempArray[x];
 				x++;
-				if (f1[i][j] != 0)
-					System.out.print(f1[i][j] + "\t");
+				if (twoDArray[i][j] != 0)
+					System.out.print(twoDArray[i][j] + "\t");
 			}
 			System.out.println();
 		}
-		return f1;
 
 	}
 
@@ -58,7 +59,7 @@ public class PrimeAnagramNumberRange {
 			number++;
 		}
 		System.out.println("Numbers that are prime and anagram : ");
-		
+
 		anagramCheckerPrinter(arr);
 
 	}
