@@ -12,6 +12,8 @@ import com.bridgeLabz.utility.Util;
  * position. search => to find whether the searching data is present or not in
  * the list getData => to get the data of the list printString => print the data
  * in string format. getIndex => to get the index of the searching data.
+ * setDataFrom => set data at particular index. getDataFrom => get data from
+ * particular index.
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-23
@@ -321,5 +323,87 @@ public class LinkedList<G> {
 		}
 		return -1;
 	}
+
+	/**
+	 * takes index position as input and returns generic type data of that index.
+	 * 
+	 * @param index position as input parameter
+	 * @return <G> type data
+	 */
+	private G getDataFromIndex(int index) {
+		int counter = 0;
+		G getData = null;
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		} else {
+			Node<G> current = head;
+			while (current.next != null) {
+				if (index == counter) {
+					getData = current.data;
+				}
+				counter++;
+				current = current.next;
+			}
+		}
+		return getData;
+	}
+
+	/**
+	 * takes data and index number as input parameter and set data at that index
+	 * position.
+	 * 
+	 * @param data  as generic type input
+	 * @param index position as input parameter
+	 */
+	public void setDataFrom(G data, int index) {
+		G dataFromIndex = getDataFromIndex(index);
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		} else {
+			Node<G> current = head;
+			while (current.next != null) {
+				if (dataFromIndex == current.data) {
+					current.data = data;
+				}
+				current = current.next;
+			}
+		}
+	}
+
+//	private <G extends Comparable<G>> void swap(LinkedList<G> list, int firstPos, int secondPos) {
+//		G temp = list.getDataFromIndex(firstPos);
+//		list.setDataFrom(list.getDataFromIndex(secondPos), firstPos);
+//		list.setDataFrom(temp, secondPos);
+//	}
+//
+//	public <G extends Comparable<G>> LinkedList<G> sortNumbers(LinkedList<G> list) {
+//		for (int i = 0; i < list.length; i++) {
+//			int minPos = -1;
+//			G minValue = list.getDataFromIndex(i);
+//			for (int j = i + 1; j < list.length() - 1; j++) {
+//				G secondPosition = list.getDataFromIndex(j);
+//				/**
+//				 * works by returning an integer value that is either positive, negative, or
+//				 * zero. It compares the object by making the call to the object that is the
+//				 * argument. A negative number means that the object making the call is “less”
+//				 * than the argument.
+//				 */
+//				if (minValue.compareTo(secondPosition) > 0) {
+//					minPos = j;
+//					minValue = list.getDataFromIndex(j);
+//				}
+//			}
+//			/**
+//			 * if minimum value returned is greater than 0 it swap the searching element
+//			 * with minimum position.
+//			 */
+//			if (minPos >= 0) {
+//				swap(list, i, minPos);
+//			}
+//		}
+//		return list;
+//
+//	}
+//
 
 }

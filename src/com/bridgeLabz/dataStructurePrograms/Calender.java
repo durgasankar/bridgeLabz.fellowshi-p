@@ -58,9 +58,16 @@ public class Calender {
 	 * 
 	 * @param startingDayPosition as integer input parameter
 	 */
-	private void putCalender(int startingDayPosition) {
+	private void putCalender(int startingDayPosition, int year) {
 //		System.out.println("starting" + startingDayPosition);
 		int startDay = 1;
+		/**
+		 * checks leap year and if found leap year then change to 2019.
+		 */
+		if (Util.isLeapYear(year)) {
+			monthArray[1] = 29;
+		}
+
 		/**
 		 * @code placing the values of firstLine of calendar.
 		 */
@@ -105,7 +112,7 @@ public class Calender {
 		int startDayOfWeek = dayOfWeek(month, year);
 //		System.out.println("d -> " + startDayOfWeek);
 		initialLinesOfCalender();
-		putCalender(startDayOfWeek);
+		putCalender(startDayOfWeek, year);
 		display(year, month);
 
 	}

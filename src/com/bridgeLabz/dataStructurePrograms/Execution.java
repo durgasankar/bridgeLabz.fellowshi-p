@@ -9,15 +9,21 @@ public class Execution {
 		System.out.println("Please Follow Zero index\n-------------------------");
 		System.out.println("Integer\n" + "--------");
 		LinkedList<Integer> list = new LinkedList<Integer>();
-		list.insertAtStart(10);
+		list.insertAtStart(100);
 		list.insert(30);
 		list.insert(40);
-		list.insert(20, 1);
+		list.insert(200, 1);
 		list.insert(50, 3);
 		list.insert(60);
-		list.insert(70);
+		list.insert(700);
 		list.insert(80);
-		System.out.println("Index : " + list.getIndex(50));
+		list.print();
+		
+//		list.sortNumbers(list);
+//		System.out.println("Index : " + list.getIndex(50));
+		
+		list.setDataFrom(150000, 3);
+		System.out.println("after sorting ...................");
 		list.print();
 		list.deleteData(50);
 

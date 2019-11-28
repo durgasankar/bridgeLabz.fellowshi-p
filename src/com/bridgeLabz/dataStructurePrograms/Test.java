@@ -19,26 +19,27 @@ public class Test {
 		}
 		return arr;
 	}
-	//matching temp value
-//	private static int anagramChecker(int[][] arr) {
-//		int temp = 0;
-//		for (int i = 0; i < arr.length; i++) {
-//			for (int j = i+1; j < arr[i].length; j++) {
-//				
-//			}
-//		}
-//		return temp;
-//	}
+
+	// matching temp value
+	private static int[][] anagramChecker(int[][] arr) {
+		int[][] tempArr = new int[10][100];
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 1; j < arr[i].length; j++) {
+				if (Util.isAnagram(arr[i][0], arr[i][j])) {
+					tempArr[i][0] = arr[i][0];
+					tempArr[i][j] = arr[i][j];
+				}
+			}
+		}
+		return tempArr;
+	}
 
 	public static void main(String[] args) {
 		int start = 1;
 		int end = 1000;
 		findPrime(start, end);
-		
-		
-		
-		
-		Array.print2DArray(arr);
+		int[][] anagramArrray = anagramChecker(arr);
+		Array.print2DArray(anagramArrray);
 
 	}
 
