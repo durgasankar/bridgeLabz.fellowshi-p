@@ -18,12 +18,11 @@ public class Execution {
 		list.insert(700);
 		list.insert(80);
 		list.print();
-		
+
 //		list.sortNumbers(list);
-//		System.out.println("Index : " + list.getIndex(50));
-		
+		System.out.println("Index : " + list.getIndex(50));
+
 		list.setDataFrom(150000, 3);
-		System.out.println("after sorting ...................");
 		list.print();
 		list.deleteData(50);
 
@@ -32,7 +31,7 @@ public class Execution {
 		System.out.println("length = " + list.length());
 
 		list.delete();
-		list.delete(1);
+		System.out.println("pos" + list.delete(2));
 		list.deleteFirst();
 
 		list.print();
@@ -72,10 +71,10 @@ public class Execution {
 		deque.addLast(30);
 		deque.addLast(40);
 		deque.display();
-		
+
 		deque.deleteFirst();
 		deque.deleteLast();
-		
+
 		deque.display();
 
 	}

@@ -30,7 +30,7 @@ public class TestQueue {
 	}
 
 	@Test
-	public void tes_Queue_deQueue_whenNotEmpty() {
+	public void test_Queue_deQueue_whenNotEmpty() {
 		queue.enQueue(10);
 		queue.enQueue(20);
 		queue.enQueue(30);
@@ -40,7 +40,7 @@ public class TestQueue {
 	}
 
 	@Test
-	public void tes_Queue_first_whenNotEmpty() {
+	public void test_Queue_first_whenNotEmpty() {
 		queue.enQueue(10);
 		queue.enQueue(20);
 		queue.enQueue(30);
@@ -49,7 +49,7 @@ public class TestQueue {
 	}
 
 	@Test
-	public void tes_Queue_last_whenNotEmpty() {
+	public void test_Queue_last_whenNotEmpty() {
 		queue.enQueue(10);
 		queue.enQueue(20);
 		queue.enQueue(30);

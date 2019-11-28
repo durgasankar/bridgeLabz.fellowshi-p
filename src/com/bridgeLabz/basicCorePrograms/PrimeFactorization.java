@@ -1,7 +1,7 @@
 package com.bridgeLabz.basicCorePrograms;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.bridgeLabz.dataStructurePrograms.generics.LinkedList;
+import com.bridgeLabz.utility.Util;
 
 public class PrimeFactorization {
 	public static void main(String[] args) {
@@ -11,36 +11,21 @@ public class PrimeFactorization {
 	}
 
 	public static void primeFactors(int number) {
-		List<Integer> list = new ArrayList<Integer>();
+		LinkedList<Integer> list = new LinkedList<Integer>();
 		for (int i = 1; i <= Math.sqrt(number); i++) {
 			if (number % i == 0) {
 				if (number / i == i) {
-					list.add(i);
+					list.insert(i);
 				} else {
-					list.add(i);
-					list.add(number / i);
+					list.insert(i);
+					list.insert(number / i);
 				}
 			}
 		}
-		for (int i = 0; i < list.size(); i++) {
-			if (isPrime(list.get(i))) {
-				System.out.println(list.get(i));
-			}
+		for (int i = 0; i < list.length(); i++) {
+			if (Util.isPrime(list.getDataFromIndex(i)))
+				System.out.println(list.getDataFromIndex(i));
 		}
-
-	}
-
-	private static boolean isPrime(int number) {
-		if (number == 1) {
-			return false;
-		} else {
-			for (int i = 2; i <= number / 2; i++) {
-				if (number % i == 0) {
-					return false;
-				}
-			}
-		}
-		return true;
 	}
 
 }

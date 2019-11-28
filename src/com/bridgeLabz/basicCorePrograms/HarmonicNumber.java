@@ -15,7 +15,7 @@ public class HarmonicNumber {
 		}
 	}
 
-	private static double harmonicNumber(int number) {
+	public static float harmonicNumber(int number) {
 		float harmonic = 1;
 		for (int i = 2; i <= number; i++) {
 			harmonic += (float) 1 / i;

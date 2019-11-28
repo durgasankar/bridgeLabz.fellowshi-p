@@ -242,7 +242,7 @@ public class LinkedList<G> {
 		// if deletion position is negative number and greater than list length.
 		if (position < 0 || position >= length()) {
 			throw new NoSuchElementException(
-					"Insertion at position " + position + " is not possible..." + "\nlist length : " + length());
+					"Deletion at position " + position + " is not possible..." + "\nlist length : " + length());
 			// if position is last index.
 		} else if (position == length - 1) {
 			return delete();
@@ -256,7 +256,7 @@ public class LinkedList<G> {
 				previous = current;
 				current = current.next;
 			}
-			G removedData = current.next.data;
+			G removedData = current.data;
 			previous.next = current.next;
 			length--;
 			return removedData;
@@ -330,14 +330,14 @@ public class LinkedList<G> {
 	 * @param index position as input parameter
 	 * @return <G> type data
 	 */
-	private G getDataFromIndex(int index) {
+	public G getDataFromIndex(int index) {
 		int counter = 0;
 		G getData = null;
 		if (isEmpty()) {
 			throw new NoSuchElementException();
 		} else {
 			Node<G> current = head;
-			while (current.next != null) {
+			while (current != null) {
 				if (index == counter) {
 					getData = current.data;
 				}
