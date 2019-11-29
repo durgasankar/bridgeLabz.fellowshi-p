@@ -14,7 +14,7 @@ import java.util.Scanner;
  * It contains basic reusable methods like => isLeapYear, => isAnagram, =>
  * isPallindrome, => isPrime, => powerOfTwo, => writeToFile, => read file, =>
  * writeFile, => printDate, => getFormattedDate, => reverseString, =>
- * countDigits
+ * countDigits, => factorial
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-13
@@ -301,6 +301,27 @@ public class Util {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Takes number as input parameter to find factorial. if number if greater than
+	 * one then it find factorial of the input number and returns integer value.
+	 * 
+	 * @param number as input Parameter to find factorial.
+	 * @return Integer value
+	 * @created 2019-11-29
+	 */
+	public static int factorial(int number) {
+		int factorial = 1;
+		if (number == 0)
+			return 0;
+		else {
+			while (number > 1) {
+				factorial = factorial * number;
+				number--;
+			}
+			return factorial;
+		}
 	}
 
 }
