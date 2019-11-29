@@ -24,7 +24,7 @@ public class PalindromeChecker {
 	 * 
 	 * @return Boolean value
 	 */
-	private static boolean palindromeChecker() {
+	public static boolean palindromeChecker() {
 		boolean isMatching = false;
 		while (deque.size() > 1) {
 			if (deque.deleteFirst() == deque.deleteLast()) {
@@ -37,8 +37,8 @@ public class PalindromeChecker {
 	public static void main(String[] args) {
 		System.out.println("Please Enter a String :");
 		String inputString = Util.scanner.nextLine();
-		
-		 //each characters are fetched and added to the a list of Dequeue.
+
+		// each characters are fetched and added to the a list of Dequeue.
 		for (int i = 0; i < inputString.length(); i++) {
 			char character = inputString.charAt(i);
 			deque.addLast(character);

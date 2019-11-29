@@ -289,7 +289,7 @@ public class LinkedList<G> {
 			return false;
 		} else {
 			Node<G> current = head;
-			while (current.next != null) {
+			while (current != null) {
 				if (current.data.equals(data)) {
 					return true;
 				}

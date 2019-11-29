@@ -24,7 +24,7 @@ public class OrderedList {
 	 * @param number as input by the user for operation
 	 * @param list   Linked list for storing data.
 	 */
-	private static void addRemoveOperation(int number, LinkedList<Integer> list) {
+	public static void addRemoveOperation(int number, LinkedList<Integer> list) {
 		if (list.search(number)) {
 			list.deleteData(number);
 			System.out.println(number + " found! & " + " succesfully deleted...");
@@ -40,7 +40,7 @@ public class OrderedList {
 	 * @param stringArray as input parameter
 	 * @return integerArray
 	 */
-	private static int[] convertingStringToInteger(String[] stringArray) {
+	public static int[] convertingStringToInteger(String[] stringArray) {
 		int[] intArray = new int[stringArray.length];
 		for (int i = 0; i < stringArray.length; i++) {
 			intArray[i] = Integer.parseInt(stringArray[i]);
@@ -74,7 +74,7 @@ public class OrderedList {
 		System.out.println("List length : " + list.length() + "\nCurrent List\n-------------");
 		list.print();
 
-		System.out.println("Please Enter the data for operation :");
+		System.out.println("Please Enter Integer data for operation :");
 		int operationalData = Util.scanner.nextInt();
 		addRemoveOperation(operationalData, list);
 

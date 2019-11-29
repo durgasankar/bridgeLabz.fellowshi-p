@@ -19,8 +19,12 @@ public class SimpleBalancedParentheses {
 	 * @param inputString to check whether the input is balanced or not.
 	 * @return boolean value
 	 */
-	private static boolean isBalanced(String inputString) {
+	public static boolean isBalanced(String inputString) {
 		Stack<Character> stack = new Stack<Character>();
+		if (inputString.isEmpty()) {
+			System.out.println("String is Empty!");
+			return false;
+		}
 		for (int i = 0; i < inputString.length(); i++) {
 			/**
 			 * push open parenthesis '(' and pop closed parenthesis ')'. At the End of the
