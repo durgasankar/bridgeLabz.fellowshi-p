@@ -4,9 +4,8 @@ import com.bridgeLabz.dataStructurePrograms.nonGenerics.Tree;
 import com.bridgeLabz.utility.Util;
 
 /**
- * This class has a functionality of finding probability of binary tree by
- * using factorial function of Utility class. and all implementation methods of
- * tree.
+ * This class has a functionality of finding probability of binary tree by using
+ * factorial function of Utility class. and all implementation methods of tree.
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-29
