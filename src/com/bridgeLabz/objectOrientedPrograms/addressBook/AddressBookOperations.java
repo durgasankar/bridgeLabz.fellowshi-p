@@ -2,9 +2,21 @@ package com.bridgeLabz.objectOrientedPrograms.addressBook;
 
 import java.util.ArrayList;
 
+/**
+ * This class has a array list which store the data of the address book. Some
+ * functionalities like add new contact, update existing contact search the
+ * contact on basis of name , search the contact on basis of contact object
+ * remove the contact and find the contact from the list on the basis of first
+ * name and print the inDetail contact and also print on the basis of first name
+ * and last name .
+ * 
+ * @author Durgasankar Mishra
+ * @created 2019-12-01
+ * @version 11.0.5
+ */
 public class AddressBookOperations {
 	private String addressBookName;
-	private ArrayList<Contact> myAddressBook;
+	private ArrayList<Contact> addressBook;
 
 	/**
 	 * Constructor to initialize arrayList and assign the name to the address book.
@@ -13,7 +25,7 @@ public class AddressBookOperations {
 	 */
 	public AddressBookOperations(String addressBookName) {
 		this.addressBookName = addressBookName;
-		this.myAddressBook = new ArrayList<Contact>();
+		this.addressBook = new ArrayList<Contact>();
 	}
 
 	/**
@@ -23,6 +35,15 @@ public class AddressBookOperations {
 	 */
 	public String getAddressBookName() {
 		return addressBookName;
+	}
+
+	/**
+	 * setter method allows you to set the name of your address book.
+	 * 
+	 * @param addressBookName
+	 */
+	public void setAddressBookName(String addressBookName) {
+		this.addressBookName = addressBookName;
 	}
 
 	/**
@@ -37,7 +58,7 @@ public class AddressBookOperations {
 			System.out.println("Contact already exist!");
 			return false;
 		} else {
-			myAddressBook.add(contact);
+			addressBook.add(contact);
 			return true;
 		}
 	}
@@ -51,7 +72,7 @@ public class AddressBookOperations {
 	 * @return Integer value.
 	 */
 	private int findContact(Contact contact) {
-		return this.myAddressBook.indexOf(contact);
+		return this.addressBook.indexOf(contact);
 	}
 
 	/**
@@ -63,8 +84,8 @@ public class AddressBookOperations {
 	 * @return integer value
 	 */
 	private int findContact(String firstName) {
-		for (int i = 0; i < myAddressBook.size(); i++) {
-			Contact fetchedContact = this.myAddressBook.get(i);
+		for (int i = 0; i < addressBook.size(); i++) {
+			Contact fetchedContact = this.addressBook.get(i);
 			if (fetchedContact.getFirstName().equals(firstName)) {
 				return i;
 			}
@@ -86,8 +107,8 @@ public class AddressBookOperations {
 		if (foundPosition < 0) {
 			System.out.println(oldContact.toString() + " was not found!");
 		}
-		this.myAddressBook.set(foundPosition, newContact);
-		System.out.println(oldContact.getFirstName() + " was replaced with " + newContact.getFirstName());
+		this.addressBook.set(foundPosition, newContact);
+		System.out.println(oldContact.getFirstName() + " updated successfully. ");
 		return true;
 	}
 
@@ -117,7 +138,7 @@ public class AddressBookOperations {
 	public Contact searchContact(String firstName) {
 		int position = findContact(firstName);
 		if (position >= 0) {
-			return this.myAddressBook.get(position);
+			return this.addressBook.get(position);
 		}
 		return null;
 	}
@@ -136,7 +157,7 @@ public class AddressBookOperations {
 			System.out.println(contact.toString() + " was not found!");
 			return false;
 		}
-		this.myAddressBook.remove(foundPosition);
+		this.addressBook.remove(foundPosition);
 		System.out.println(contact.toString() + " successfully deleted!");
 		return true;
 	}
@@ -147,11 +168,11 @@ public class AddressBookOperations {
 	 */
 	public void printIndetailContact() {
 		System.out.println("contact list :");
-		for (int i = 0; i < myAddressBook.size(); i++) {
-			System.out.println((i + 1) + ". First Name -> " + myAddressBook.get(i).getFirstName() + "\n  Last Name -> "
-					+ myAddressBook.get(i).getLastName() + "\n  Address -> " + myAddressBook.get(i).getAddress()
-					+ "\n  Email id -> " + myAddressBook.get(i).getEmail() + "\n  mobile no -> "
-					+ myAddressBook.get(i).getPhoneNumber());
+		for (int i = 0; i < addressBook.size(); i++) {
+			System.out.println((i + 1) + ". First Name -> " + addressBook.get(i).getFirstName() + "\n   Last Name -> "
+					+ addressBook.get(i).getLastName() + "\n   Address -> " + addressBook.get(i).getAddress()
+					+ "\n   Email id -> " + addressBook.get(i).getEmail() + "\n   mobile no -> "
+					+ addressBook.get(i).getPhoneNumber());
 		}
 	}
 
@@ -160,8 +181,8 @@ public class AddressBookOperations {
 	 */
 	public void printFullName() {
 		System.out.println("contact list :");
-		for (int i = 0; i < myAddressBook.size(); i++) {
-			System.out.println((i + 1) + " . " + myAddressBook.get(i).toString());
+		for (int i = 0; i < addressBook.size(); i++) {
+			System.out.println((i + 1) + " . " + addressBook.get(i).toString());
 		}
 	}
 
