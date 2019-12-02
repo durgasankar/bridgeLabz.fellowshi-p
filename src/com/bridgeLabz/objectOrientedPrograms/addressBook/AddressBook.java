@@ -1,6 +1,7 @@
 package com.bridgeLabz.objectOrientedPrograms.addressBook;
 
 import com.bridgeLabz.utility.Util;
+import com.bridgeLabz.utility.UtilJson;
 
 /**
  * This class is the main implementation of the address book class which bears
@@ -57,7 +58,7 @@ public class AddressBook {
 	 * from the list if the data matches found then it returns the contact and ask
 	 * the user to give the details which needed to be updated . after the details
 	 * given from the user side it update the old tails with new details and after
-	 * successfully uapdate a confirmation message is displayed to the user.
+	 * successfully update a confirmation message is displayed to the user.
 	 */
 	private static void updateContact() {
 		System.out.println("Enter existing contact first Name :");
@@ -125,6 +126,12 @@ public class AddressBook {
 				+ existingContactRecord.getPhoneNumber());
 	}
 
+	public static String writeDataToJson() {
+		String addressBook = UtilJson.convertJavaToJson(myAddressBook)
+				+ UtilJson.convertJavaToJson(myAddressBook.addressBook);
+		return addressBook;
+	}
+
 	public static void main(String[] args) {
 		System.out.println("please Enter your address book name :");
 		String addressBookName = Util.scanner.nextLine();
@@ -174,6 +181,8 @@ public class AddressBook {
 				System.out.println("Please read instructions!");
 			}
 		}
+
+		Util.writeToFile(writeDataToJson(), "jsonAddressBook.json");
 	}
 
 }

@@ -18,7 +18,7 @@ import com.bridgeLabz.utility.Util;
 public class BinarySearchImplimentation {
 	
 	public static void main(String[] args) {
-		String[] array = Util.readFile("C:\\Users\\durgasankar\\eclipse-workspace\\binarySearch.txt").split(",");
+		String[] array = Util.readFile("binarySearch.txt").split(",");
 		Array.print1DArray(array);
 		System.out.println("Enter the String You want to search for :");
 		String saerchingString = Util.scanner.nextLine();
