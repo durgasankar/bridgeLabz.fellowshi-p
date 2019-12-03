@@ -36,7 +36,7 @@ public class UtilJson {
 	 * @throws IOException
 	 * @created 2019-11-30
 	 */
-	public static String convertJavaToJson(Object object) {
+	public static String convertObjectToJson(Object object) {
 		String jsonResult = "";
 		try {
 			jsonResult = mapper.writeValueAsString(object);
@@ -76,5 +76,7 @@ public class UtilJson {
 		}
 		return result;
 	}
+	
+
 
 }

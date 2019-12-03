@@ -10,7 +10,7 @@ public class MainClass {
 		test1.setName("raja");
 		test1.setBalance(12560);
 
-		String jsonOutput = UtilJson.convertJavaToJson(test1);
+		String jsonOutput = UtilJson.convertObjectToJson(test1);
 		System.out.println(jsonOutput);
 	
 		Test test2 = UtilJson.convertJsonToJava(jsonOutput, Test.class);

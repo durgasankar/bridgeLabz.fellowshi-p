@@ -48,6 +48,7 @@ public class AddressBook {
 		Contact newContact = Contact.createContact(firstName, lastName, email, address, phoneNumber);
 		if (myAddressBook.addNewContact(newContact)) {
 			System.out.println("New contact " + firstName + " added successfully.");
+			Util.writeToFile(UtilJson.convertObjectToJson(myAddressBook.toString()), "jsonAddressBook.json");
 		} else {
 			System.out.println("cannot add " + firstName + " already on file.");
 		}
@@ -127,8 +128,7 @@ public class AddressBook {
 	}
 
 	public static String writeDataToJson() {
-		String addressBook = UtilJson.convertJavaToJson(myAddressBook)
-				+ UtilJson.convertJavaToJson(myAddressBook.addressBook);
+		String addressBook = UtilJson.convertObjectToJson(myAddressBook.addressBook);
 		return addressBook;
 	}
 
@@ -151,14 +151,17 @@ public class AddressBook {
 
 			case 2:
 				addNewContact();
+				Util.writeToFile(writeDataToJson(), "jsonAddressBook.json");
 				break;
 
 			case 3:
 				updateContact();
+				Util.writeToFile(writeDataToJson(), "jsonAddressBook.json");
 				break;
 
 			case 4:
 				deleteContact();
+				Util.writeToFile(writeDataToJson(), "jsonAddressBook.json");
 				break;
 
 			case 5:
@@ -182,7 +185,6 @@ public class AddressBook {
 			}
 		}
 
-		Util.writeToFile(writeDataToJson(), "jsonAddressBook.json");
 	}
 
 }
