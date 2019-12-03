@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class InventoryOperations implements IIneventryCalculation {
 	private String inventoryName;
-	private ArrayList<Inventory> inventory;
+	protected ArrayList<Inventory> inventoryList;
 
 	public InventoryOperations(String name) {
 		this.inventoryName = name;
-		this.inventory = new ArrayList<Inventory>();
+		this.inventoryList = new ArrayList<Inventory>();
 	}
 
 	public String getInventoryName() {
@@ -51,22 +51,30 @@ public class InventoryOperations implements IIneventryCalculation {
 			System.out.println("Item already exist in the list.");
 			return false;
 		}
-		inventory.add(newItem);
+		inventoryList.add(newItem);
 		return true;
 	}
 
 	private int findInInventory(Inventory inventoryItem) {
-		return this.inventory.indexOf(inventoryItem);
+		return this.inventoryList.indexOf(inventoryItem);
 	}
 
 	private int findInInventory(String name) {
-		for (int i = 0; i < inventory.size(); i++) {
-			Inventory fetchedItem = this.inventory.get(i);
+		for (int i = 0; i < inventoryList.size(); i++) {
+			Inventory fetchedItem = this.inventoryList.get(i);
 			if (fetchedItem.getName().equals(name)) {
 				return i;
 			}
 		}
 		return -1;
+	}
+
+	public Inventory searchInInventory(String productName) {
+		int position = findInInventory(productName);
+		if (position >= 0) {
+			return this.inventoryList.get(position);
+		}
+		return null;
 	}
 
 	public boolean removeItem(Inventory itemName) {
@@ -75,8 +83,7 @@ public class InventoryOperations implements IIneventryCalculation {
 			System.out.println(itemName.getName() + " was not found.");
 			return false;
 		}
-		this.inventory.remove(foundPosition);
-		System.out.println(itemName.getName() + " was sucessfully removed.");
+		this.inventoryList.remove(foundPosition);
 		return true;
 	}
 
@@ -86,11 +93,17 @@ public class InventoryOperations implements IIneventryCalculation {
 			System.out.println(oldItem.getName() + " was not found.");
 			return false;
 		}
-		this.inventory.set(foundPosition, newItem);
-		System.out.println(newItem.getName() + " updated successfully.");
+		this.inventoryList.set(foundPosition, newItem);
 		return true;
 	}
-	
-	
+
+	public void printInventory() {
+		if (inventoryList.isEmpty()) {
+			System.out.println("Inventory is empty");
+		}
+		for (int i = 0; i < inventoryList.size(); i++) {
+			System.out.println(inventoryList.get(i).toString());
+		}
+	}
 
 }

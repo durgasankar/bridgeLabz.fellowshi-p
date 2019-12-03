@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class AddressBookOperations {
 	private String addressBookName;
-	public ArrayList<Contact> addressBook;
+	protected ArrayList<Contact> addressBook;
 
 	/**
 	 * Constructor to initialize arrayList and assign the name to the address book.

@@ -36,19 +36,24 @@ public class AddressBook {
 	private static void addNewContact() {
 		System.out.println("Enter First Name :");
 		String firstName = Util.scanner.next();
+		Util.scanner.nextLine();
 		System.out.println("Enter Last Name :");
 		String lastName = Util.scanner.next();
+		Util.scanner.nextLine();
 		System.out.println("Enter Email id :");
 		String email = Util.scanner.next();
+		Util.scanner.nextLine();
 		System.out.println("Enter address :");
 		String address = Util.scanner.next();
+		Util.scanner.nextLine();
 		System.out.println("Enter phone Number :");
 		Long phoneNumber = Util.scanner.nextLong();
+		Util.scanner.nextLine();
 
 		Contact newContact = Contact.createContact(firstName, lastName, email, address, phoneNumber);
 		if (myAddressBook.addNewContact(newContact)) {
 			System.out.println("New contact " + firstName + " added successfully.");
-			Util.writeToFile(UtilJson.convertObjectToJson(myAddressBook.toString()), "jsonAddressBook.json");
+			
 		} else {
 			System.out.println("cannot add " + firstName + " already on file.");
 		}
@@ -126,7 +131,10 @@ public class AddressBook {
 				+ "\n  Email id -> " + existingContactRecord.getEmail() + "\n  mobile no -> "
 				+ existingContactRecord.getPhoneNumber());
 	}
-
+	/**
+	 * writes all data of address book to JSON file and returns the string 
+	 * @return String values of JSON
+	 */
 	public static String writeDataToJson() {
 		String addressBook = UtilJson.convertObjectToJson(myAddressBook.addressBook);
 		return addressBook;
@@ -141,7 +149,7 @@ public class AddressBook {
 		printInstructions();
 		boolean quit = false;
 		while (!quit) {
-			System.out.println("\nEnter action : (8 -> show available actions)");
+			System.out.println("\nEnter action : (press : 8 -> show available actions)");
 			int action = Util.scanner.nextInt();
 			switch (action) {
 			case 1:
