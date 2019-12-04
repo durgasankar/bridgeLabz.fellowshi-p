@@ -18,7 +18,7 @@ import com.bridgeLabz.utility.UtilJson;
 public class AddressBook {
 	private static AddressBookOperations myAddressBook = new AddressBookOperations("admin");
 
-	private static void printInstructions() {
+	private static void printMainInstructions() {
 		System.out.println("Available actions :\npress :");
 		System.out.println("\t1 -> quit the application.\n" + "\t2 -> add a new contact.\n"
 				+ "\t3 -> update an existing contact.\n" + "\t4 -> remove an existing contact.\n"
@@ -146,7 +146,7 @@ public class AddressBook {
 		myAddressBook.setAddressBookName(addressBookName);
 		System.out.println("Welcome to " + myAddressBook.getAddressBookName()
 				+ "'s address book.\n---------------------------------");
-		printInstructions();
+		printMainInstructions();
 		boolean quit = false;
 		while (!quit) {
 			System.out.println("\nEnter action : (press : 8 -> show available actions)");
@@ -185,7 +185,7 @@ public class AddressBook {
 				break;
 
 			case 8:
-				printInstructions();
+				printMainInstructions();
 				break;
 
 			default:

@@ -102,7 +102,7 @@ public class InventoryOperations implements IIneventryCalculation {
 			System.out.println("Inventory is empty");
 		}
 		for (int i = 0; i < inventoryList.size(); i++) {
-			System.out.println(inventoryList.get(i).toString());
+			System.out.println((i + 1) + inventoryList.get(i).toString());
 		}
 	}
 

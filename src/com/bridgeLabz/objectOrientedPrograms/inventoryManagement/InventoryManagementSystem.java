@@ -6,6 +6,7 @@ import com.bridgeLabz.utility.UtilJson;
 public class InventoryManagementSystem {
 	private String inventoryName;
 	protected static InventoryOperations inventory = new InventoryOperations("admin");
+	private static Instructions instruction = new Instructions();
 
 	public InventoryManagementSystem(String inventoryName) {
 		this.inventoryName = inventoryName;
@@ -17,15 +18,6 @@ public class InventoryManagementSystem {
 
 	public void setInventoryName(String inventoryName) {
 		this.inventoryName = inventoryName;
-	}
-
-	private static void printInstructions() {
-		System.out.println("Available actions :\npress :");
-		System.out.println("\t1 -> switch from inventory.\n" + "\t2 -> add a new product.\n"
-				+ "\t3 -> update an existing product.\n" + "\t4 -> remove an existing product.\n"
-				+ "\t5 -> search a product from inventory.\n" + "\t6 -> print indetail product.\n"
-				+ "\t7 -> print instructions." + "\t8 -> quit application");
-		System.out.println("choose your action :");
 	}
 
 	private static void addNewProductToInventory() {
@@ -45,7 +37,7 @@ public class InventoryManagementSystem {
 
 	}
 
-	private static void updateExistingProductInInventory() {
+	private static void updateBothPriceAndWeightInExistingProductOfInventory() {
 		System.out.println("Enter the name of the product you want to modify :");
 		String oldProductName = Util.scanner.next();
 		Inventory existingProductInInventory = inventory.searchInInventory(oldProductName);
@@ -60,6 +52,45 @@ public class InventoryManagementSystem {
 		Inventory updatedProductInInventory = Inventory.createInventory(oldProductName, weight, price);
 		if (inventory.updateInventory(existingProductInInventory, updatedProductInInventory)) {
 			System.out.println("Record updated successfully.");
+		} else {
+			System.out.println("Error updating record.");
+		}
+
+	}
+
+	private static void updatePriceInExistingProductOfInventory() {
+		System.out.println("Enter the name of the product you want to modify :");
+		String oldProductName = Util.scanner.next();
+		Inventory existingProductInInventory = inventory.searchInInventory(oldProductName);
+		if (existingProductInInventory == null) {
+			System.out.println(oldProductName + " not found in inventory.");
+			return;
+		}
+		int oldWeight = existingProductInInventory.getWeight();
+		System.out.println("Enter price :");
+		double newPrice = Util.scanner.nextDouble();
+		Inventory updatedProductInInventory = Inventory.createInventory(oldProductName, oldWeight, newPrice);
+		if (inventory.updateInventory(existingProductInInventory, updatedProductInInventory)) {
+			System.out.println("price updated successfully.");
+		} else {
+			System.out.println("Error updating record.");
+		}
+	}
+
+	private static void updateWeightInExistingProductOfInventory() {
+		System.out.println("Enter the name of the product you want to modify :");
+		String oldProductName = Util.scanner.next();
+		Inventory existingProductInInventory = inventory.searchInInventory(oldProductName);
+		if (existingProductInInventory == null) {
+			System.out.println(oldProductName + " not found in inventory.");
+			return;
+		}
+		double oldPrice = existingProductInInventory.getWeight();
+		System.out.println("Enter price :");
+		int newWeight = Util.scanner.nextInt();
+		Inventory updatedProductInInventory = Inventory.createInventory(oldProductName, newWeight, oldPrice);
+		if (inventory.updateInventory(existingProductInInventory, updatedProductInInventory)) {
+			System.out.println("price updated successfully.");
 		} else {
 			System.out.println("Error updating record.");
 		}
@@ -98,39 +129,178 @@ public class InventoryManagementSystem {
 		String inventoryManagement = UtilJson.convertObjectToJson(inventory.inventoryList);
 		return inventoryManagement;
 	}
-	
+
 	private static void printInventory() {
 		inventory.printInventory();
 	}
 
-	public static boolean inventoryActions(boolean isQuit) {
-		printInstructions();
-		boolean switchFromInventory = false;
+	public static void updateImplimentation(boolean isQuit) {
+		isQuit = false;
+		instruction.printUpdateActions();
+		boolean isCompleteUpdated = false;
+		while (!isCompleteUpdated && !isQuit) {
+			System.out.println("\nEnter action : (press : 6 -> show available update actions)\n"
+					+ "\t\t(press : 4 -> cancel update.)");
+			int updateActions = Util.scanner.nextInt();
+			switch (updateActions) {
+			case 1:
+				// update price
+				updatePriceInExistingProductOfInventory();
+				isCompleteUpdated = true;
+				break;
+			case 2:
+				// update weight
+				updateWeightInExistingProductOfInventory();
+				isCompleteUpdated = true;
+				break;
+			case 3:
+				// update both price and quantity
+				updateBothPriceAndWeightInExistingProductOfInventory();
+				isCompleteUpdated = true;
+				break;
+			case 4:
+				// cancel update
+				isCompleteUpdated = true;
+				break;
+			case 5:
+				// quit application
+				isCompleteUpdated = true;
+				isQuit = true;
+				break;
+			case 6:
+				// print update actions
+				instruction.printUpdateActions();
+				break;
+			default:
+				System.out.println("Please read instructions!");
+				break;
+			}
+		}
 
-		while (!switchFromInventory || isQuit) {
+	}
+
+	public static void deleteImplimentation(boolean isQuit) {
+		isQuit = false;
+		instruction.printDeleteActions();
+		boolean isDeleteComplete = false;
+		while (!isDeleteComplete && !isQuit) {
+			System.out.println("\nEnter action : press : 1 -> cancel delete operation.\n"
+					+ "\t\tpress : 2 -> quit application" + "\t\tpress 3 : delete operation");
+			int deleteAction = Util.scanner.nextInt();
+			switch (deleteAction) {
+
+			case 1:
+				isDeleteComplete = true;
+				break;
+			case 2:
+				isDeleteComplete = true;
+				isQuit = true;
+				break;
+			case 3:
+				deleteRecordFromInventory();
+				isDeleteComplete = true;
+				break;
+			default:
+				System.out.println("Please read instructions!");
+				break;
+			}
+		}
+
+	}
+
+	public static void addImplimentation(boolean isQuit) {
+		isQuit = false;
+		boolean isAddComplete = false;
+		while (!isAddComplete && !isQuit) {
+			System.out.println("\nEnter action : press : 1 -> cancel addition operation.\n"
+					+ "\t\tpress : 2 -> quit application\n" + "\t\tpress : 3 -> addition operation");
+			int deleteAction = Util.scanner.nextInt();
+			switch (deleteAction) {
+
+			case 1:
+				isAddComplete = true;
+				break;
+			case 2:
+				isAddComplete = true;
+				isQuit = true;
+				break;
+			case 3:
+				addNewProductToInventory();
+				isAddComplete = true;
+				break;
+			default:
+				System.out.println("Please read instructions!");
+				break;
+			}
+		}
+
+	}
+
+	public static void statistics(boolean isQuit) {
+		isQuit = false;
+		boolean isCheckStatistics = false;
+		while (!isCheckStatistics || !isQuit) {
+			System.out.println("\nEnter action : press : 4 -> print instructions\n");
+			int deleteAction = Util.scanner.nextInt();
+			switch (deleteAction) {
+
+			case 1:
+				System.out.println("Total weight in inventory : "
+						+ inventory.calculateTotalWeight(inventory.inventoryList) + " kg.");
+				isCheckStatistics = true;
+				break;
+			case 2:
+				isCheckStatistics = true;
+				isQuit = true;
+				break;
+			case 3:
+				System.out.println("Total price of stocks in inventory : "
+						+ inventory.calculateTotalPrice(inventory.inventoryList) + " rs.");
+				isCheckStatistics = true;
+				break;
+			case 4:
+				instruction.printStatistics();
+				isCheckStatistics = true;
+				break;
+			default:
+				System.out.println("Please read instructions!");
+				break;
+			}
+		}
+
+	}
+
+	public static void main(String[] args) {
+		System.out.println("please Enter your inventory name :");
+		String inventoryName = Util.scanner.nextLine();
+		inventory.setInventoryName(inventoryName);
+		System.out.println("Welcome to " + inventory.getInventoryName() + "'s inventory.\n--------------------------");
+		instruction.printMainInstructions();
+		boolean isQuit = false;
+
+		while (!isQuit) {
 			System.out.println("\nEnter action : (press : 7 -> show available actions)");
 			int action = Util.scanner.nextInt();
 
 			switch (action) {
 			case 1:
-				switchFromInventory = true;
-				isQuit = false;
+				isQuit = true;
 				System.out.println("Thank you for using " + inventory.getInventoryName() + " inventory");
 				break;
 
 			case 2:
-				addNewProductToInventory();
+				addImplimentation(isQuit);
 				Util.writeToFile(writeDataToJson(), "jsonInventory.json");
 				break;
 
 			case 3:
-				updateExistingProductInInventory();
-//				Util.writeToFile(writeDataToJson(), "jsonInventory.json");
+				updateImplimentation(isQuit);
+				Util.writeToFile(writeDataToJson(), "jsonInventory.json");
 				break;
 
 			case 4:
-				deleteRecordFromInventory();
-//				Util.writeToFile(writeDataToJson(), "jsonInventory.json");
+				deleteImplimentation(isQuit);
+				Util.writeToFile(writeDataToJson(), "jsonInventory.json");
 				break;
 
 			case 5:
@@ -138,31 +308,21 @@ public class InventoryManagementSystem {
 				break;
 
 			case 6:
-				//printInstructions();
 				printInventory();
 				break;
 
 			case 7:
-				printInstructions();
+				instruction.printMainInstructions();
 				break;
+
 			case 8:
-				switchFromInventory = true;
-				isQuit = true;
+				statistics(isQuit);
+				break;
 
 			default:
 				System.out.println("Please read instructions!");
+				break;
 			}
 		}
-		return true;
-
 	}
-
-//	public static void main(String[] args) {
-//		System.out.println("please Enter your inventory name :");
-//		String inventoryName = Util.scanner.nextLine();
-//		inventory.setInventoryName(inventoryName);
-//		System.out.println("Welcome to " + inventory.getInventoryName() + "'s inventory.\n--------------------------");
-//		printInstructions();
-//
-//	}
 }
