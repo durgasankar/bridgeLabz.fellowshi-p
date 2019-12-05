@@ -9,7 +9,8 @@ import com.bridgeLabz.utility.UtilJson;
  * from directory, searching a contact on basis of first name, quit application
  * and displaying inDetail information of the contact. This class allow the user
  * to implement above functionality by pressing the keys mentioned in the
- * working directory .
+ * working directory . After user uses the application all data were written to
+ * the JSON file.
  * 
  * @author Durgasankar Mishra
  * @created 2019-12-1
@@ -53,7 +54,7 @@ public class AddressBook {
 		Contact newContact = Contact.createContact(firstName, lastName, email, address, phoneNumber);
 		if (myAddressBook.addNewContact(newContact)) {
 			System.out.println("New contact " + firstName + " added successfully.");
-			
+
 		} else {
 			System.out.println("cannot add " + firstName + " already on file.");
 		}
@@ -131,8 +132,10 @@ public class AddressBook {
 				+ "\n  Email id -> " + existingContactRecord.getEmail() + "\n  mobile no -> "
 				+ existingContactRecord.getPhoneNumber());
 	}
+
 	/**
-	 * writes all data of address book to JSON file and returns the string 
+	 * writes all data of address book to JSON file and returns the string
+	 * 
 	 * @return String values of JSON
 	 */
 	public static String writeDataToJson() {

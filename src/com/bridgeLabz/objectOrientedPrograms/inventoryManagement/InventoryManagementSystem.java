@@ -3,23 +3,57 @@ package com.bridgeLabz.objectOrientedPrograms.inventoryManagement;
 import com.bridgeLabz.utility.Util;
 import com.bridgeLabz.utility.UtilJson;
 
+/**
+ * This class has the implementation of addition operation , deletion operation,
+ * update operation on basis of price , on basis of weight, both price and
+ * weight to the inventory, check in detail price and weight of stocks in the
+ * inventory. User has the ability to check statistics of the data present in
+ * the inventory. Along with all implementation methods it has main method where
+ * every data is implemented.
+ * 
+ * @author Durgasankar Mishra
+ * @created 2019-12-04
+ * @version 11.0.5
+ */
 public class InventoryManagementSystem {
 	private String inventoryName;
 	protected static InventoryOperations inventory = new InventoryOperations("admin");
 	private static Instructions instruction = new Instructions();
 
+	/**
+	 * Constructor to initialize the class takes parameter inventory name as input
+	 * parameter.
+	 * 
+	 * @param inventoryName as input parameter
+	 */
 	public InventoryManagementSystem(String inventoryName) {
 		this.inventoryName = inventoryName;
 	}
 
+	/**
+	 * Getter method to getInventory name.
+	 * 
+	 * @return String data.
+	 */
 	public String getInventoryName() {
 		return inventoryName;
 	}
 
+	/**
+	 * Setter method to set inventory name.
+	 * 
+	 * @param inventoryName of String type as input parameter
+	 */
 	public void setInventoryName(String inventoryName) {
 		this.inventoryName = inventoryName;
 	}
 
+	/**
+	 * Ask the customer to give inputs of name of product, weight and price and
+	 * create a class type object by using details given by user and it calls the
+	 * addNewItem method by using object reference. addition operation success
+	 * message is displayed with proper message.
+	 */
 	private static void addNewProductToInventory() {
 		System.out.println("Enter the name :");
 		String name = Util.scanner.next();
@@ -37,6 +71,14 @@ public class InventoryManagementSystem {
 
 	}
 
+	/**
+	 * Ask the customer to give inputs of name of product. It search for existing
+	 * product by using object reference. If found then it ask the customer to give
+	 * input of price and weight and use the name from oldProductOfInventory and
+	 * create a new class type object and uses updateInventory method from reference
+	 * type and after successful update it display with proper message. update is
+	 * done only on the basis of price and weight.
+	 */
 	private static void updateBothPriceAndWeightInExistingProductOfInventory() {
 		System.out.println("Enter the name of the product you want to modify :");
 		String oldProductName = Util.scanner.next();
@@ -58,6 +100,14 @@ public class InventoryManagementSystem {
 
 	}
 
+	/**
+	 * Ask the customer to give inputs of name of product. It search for existing
+	 * product by using object reference. If found then it ask the customer to give
+	 * input of price use the name and weight from oldProductOfInventory and create
+	 * a new class type object and uses updateInventory method from reference type
+	 * and after successful update it display with proper message. update is done
+	 * only on the basis of price.
+	 */
 	private static void updatePriceInExistingProductOfInventory() {
 		System.out.println("Enter the name of the product you want to modify :");
 		String oldProductName = Util.scanner.next();
@@ -77,6 +127,14 @@ public class InventoryManagementSystem {
 		}
 	}
 
+	/**
+	 * Ask the customer to give inputs of name of product. It search for existing
+	 * product by using object reference. If found then it ask the customer to give
+	 * input of weight and use the name from oldProductOfInventory and create a new
+	 * class type object and uses updateInventory method from reference type and
+	 * after successful update it display with proper message. update is done only
+	 * on the basis of weight.
+	 */
 	private static void updateWeightInExistingProductOfInventory() {
 		System.out.println("Enter the name of the product you want to modify :");
 		String oldProductName = Util.scanner.next();
@@ -97,6 +155,12 @@ public class InventoryManagementSystem {
 
 	}
 
+	/**
+	 * This function ask the customer to give the input of name of the product. From
+	 * the name it search for the Existing product by using object reference. If
+	 * found it successfully delete it from the inventory by using object reference.
+	 * After successfully deletion it display with proper deletion message.
+	 */
 	private static void deleteRecordFromInventory() {
 		System.out.println("Enter the name of item which you want to delete :");
 		String deletingProductName = Util.scanner.next();
@@ -113,6 +177,11 @@ public class InventoryManagementSystem {
 
 	}
 
+	/**
+	 * Ask the customer to give the name of the product which he wants to search
+	 * for. On the basis of name it use object reference and search for existence of
+	 * product if found then it print inDetail information of the product.
+	 */
 	public static void searchProductFromInventory() {
 		System.out.println("Enter the product name you want to search :");
 		String productName = Util.scanner.next();
@@ -125,15 +194,30 @@ public class InventoryManagementSystem {
 				+ existingProduct.getPrice());
 	}
 
+	/**
+	 * writes all data of address book to JSON file and returns the string
+	 * 
+	 * @return String values of JSON
+	 */
 	private static String writeDataToJson() {
 		String inventoryManagement = UtilJson.convertObjectToJson(inventory.inventoryList);
 		return inventoryManagement;
 	}
 
+	/**
+	 * Prints the all data present in the inventory in string format.
+	 */
 	private static void printInventory() {
 		inventory.printInventory();
 	}
 
+	/**
+	 * Allows user to a do a particular update at a time . after each update he will
+	 * be reDicted to main menu option. Also he has one ability to close the
+	 * Application at particular time when he want to stop it.
+	 * 
+	 * @param isQuit Boolean type as input parameter.
+	 */
 	public static void updateImplimentation(boolean isQuit) {
 		isQuit = false;
 		instruction.printUpdateActions();
@@ -179,6 +263,13 @@ public class InventoryManagementSystem {
 
 	}
 
+	/**
+	 * Allows user to a do a particular delete operation at a time . after each
+	 * operation he will be reDicted to main menu option. Also he has one ability to
+	 * close the Application at particular time when he want to stop it.
+	 * 
+	 * @param isQuit Boolean type as input parameter.
+	 */
 	public static void deleteImplimentation(boolean isQuit) {
 		isQuit = false;
 		instruction.printDeleteActions();
@@ -208,6 +299,13 @@ public class InventoryManagementSystem {
 
 	}
 
+	/**
+	 * Allows user to a do a particular addition operation at a time . after each
+	 * operation he will be reDicted to main menu option. Also he has one ability to
+	 * close the Application at particular time when he want to stop it.
+	 * 
+	 * @param isQuit Boolean type as input parameter.
+	 */
 	public static void addImplimentation(boolean isQuit) {
 		isQuit = false;
 		boolean isAddComplete = false;
@@ -236,6 +334,13 @@ public class InventoryManagementSystem {
 
 	}
 
+	/**
+	 * This function allows the customer to check the statistics of the inventory.
+	 * he has the ability to do each operation at a time. This operation continues
+	 * till he want go back to main menu.
+	 * 
+	 * @param isQuit Boolean type as input parameter.
+	 */
 	public static void statistics(boolean isQuit) {
 		isQuit = false;
 		boolean isCheckStatistics = false;
