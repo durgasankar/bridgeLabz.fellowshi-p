@@ -1,5 +1,14 @@
 package com.bridgeLabz.objectOrientedPrograms.inventoryManagement;
 
+/**
+ * This class has the operation instructions which to be given to the user while
+ * operating the application. Instructions of Addition operation. deletion
+ * operation, Update operation and main working of instructions application.
+ * 
+ * @author Durgasankar Mishra
+ * @created 2019-12-05
+ * @version 11.0.5
+ */
 public class Instructions {
 
 	protected void printMainInstructions() {
@@ -11,6 +20,9 @@ public class Instructions {
 		System.out.println("choose your action :");
 	}
 
+	/**
+	 * Instructions for Update actions.
+	 */
 	protected void printUpdateActions() {
 		System.out.println("Available actions :\npress :");
 		System.out.println(
@@ -19,6 +31,9 @@ public class Instructions {
 		System.out.println("choose your action :");
 	}
 
+	/**
+	 * Instructions for Delete actions
+	 */
 	protected void printDeleteActions() {
 		System.out.println("Available actions :\npress :");
 		System.out.println("\t1 -> cancel delete operation\n" + "\t2 -> Quit application.\n"
@@ -26,6 +41,9 @@ public class Instructions {
 		System.out.println("choose your action :");
 	}
 
+	/**
+	 * Instructions for Addition actions.
+	 */
 	protected void printAdditionActions() {
 		System.out.println("Available actions :\npress :");
 		System.out.println("\t1 -> cancel addition operation\n" + "\t2 -> Quit application.\n"
@@ -33,6 +51,9 @@ public class Instructions {
 		System.out.println("choose your action :");
 	}
 
+	/**
+	 * Instructions for Print statistics Actions.
+	 */
 	protected void printStatistics() {
 		System.out.println("Available actions :\npress :");
 		System.out.println("\t1 -> calculate total weight in inventory.\n" + "\t2 -> Quit the application.\n"
