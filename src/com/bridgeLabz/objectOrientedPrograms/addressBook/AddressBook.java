@@ -162,17 +162,17 @@ public class AddressBook {
 
 			case 2:
 				addNewContact();
-				Util.writeToFile(writeDataToJson(), "jsonAddressBook.json");
+				Util.writeToFile(writeDataToJson(), "jsonAddressBook1.json");
 				break;
 
 			case 3:
 				updateContact();
-				Util.writeToFile(writeDataToJson(), "jsonAddressBook.json");
+				Util.writeToFile(writeDataToJson(), "jsonAddressBook2.json");
 				break;
 
 			case 4:
 				deleteContact();
-				Util.writeToFile(writeDataToJson(), "jsonAddressBook.json");
+				Util.writeToFile(writeDataToJson(), "jsonAddressBook3.json");
 				break;
 
 			case 5:

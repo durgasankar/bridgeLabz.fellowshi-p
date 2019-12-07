@@ -151,15 +151,6 @@ public class Util {
 		}
 	}
 
-	/**
-	 * it takes the file address and splitting basis as a parameter and splits the
-	 * written documents and returns String array on basis of splitting.
-	 * 
-	 * @param fileName      address as a parameter .
-	 * @param splitingBasis as a parameter on the basis of which it splits.
-	 * @return String array of words on the basis of splitting.
-	 * @created 2019-11-19
-	 */
 
 	/**
 	 * takes input parameter date in String and returns date in Date format.
