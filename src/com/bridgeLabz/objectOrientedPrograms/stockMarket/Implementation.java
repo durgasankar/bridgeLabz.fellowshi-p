@@ -11,18 +11,19 @@ public class Implementation {
 
 	public void displayCompanyInstructions() {
 		System.out.println("Available actions :\npress :");
-		System.out.println("\t1 -> switch to Customer.\n" + "\t2 -> add new share.\n" + "\t3 -> print all shares\n"
-				+ "\t4 -> print instructions.\n" + "\t5 ->Quit the application completely.\n"
-				+ "\t6 -> remove share of the company.");
+		System.out.println("\t1 -> Switch to main menu.\n" + "\t2 -> Add new share.\n" + "\t3 -> Print all shares\n"
+				+ "\t4 -> Print instructions.\n" + "\t5 -> Quit the application completely.\n"
+				+ "\t6 -> Remove share of the company.");
 		System.out.println("choose your action :");
 
 	}
 
 	public void displayCustomerInstructions() {
 		System.out.println("Available actions :\npress :");
-		System.out.println("\t1 -> Switch to company.\n" + "\t2 -> Buy a share\n"
-				+ "\t3 -> print all available shares\n" + "\t4 -> print instructions.\n"
-				+ "\t5 -> remaining shares of company.\n" + "\t6 -> Remove company share.");
+		System.out.println(
+				"\t1 -> Switch to main menu.\n" + "\t2 -> Buy a share\n" + "\t3 -> Print customers portfolio.\n"
+						+ "\t4 -> Print instructions.\n" + "\t5 -> Print company shares.\n"
+						+ "\t6 -> Quit the application.\n" + "\t7 -> Sell shares.");
 		System.out.println("choose your action :");
 
 	}
@@ -81,11 +82,11 @@ public class Implementation {
 				break;
 
 			case 2:
-				trading.purchase();
+				trading.buyShare();
 				break;
 
 			case 3:
-				trading.displayCustomerShortList();
+				trading.displayCustomerPortfolio();
 				break;
 
 			case 4:
@@ -101,6 +102,10 @@ public class Implementation {
 				isQuitApplication = true;
 				break;
 
+			case 7:
+				trading.sellShare();
+				break;
+
 			default:
 				System.out.println("Please read instructions!");
 			}
@@ -114,7 +119,7 @@ public class Implementation {
 
 		boolean isQuitApplication = false;
 		while (!isQuitApplication) {
-			System.out.println("\nEnter action : 1. login as company 2. login as customer.");
+			System.out.println("\nEnter action : 1. login as company 2. login as customer. 3. Quit application");
 			int action = Util.scanner.nextInt();
 			switch (action) {
 			case 1:
