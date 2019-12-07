@@ -6,12 +6,27 @@ import com.bridgeLabz.objectOrientedPrograms.stockMarket.customer.CustomerOperat
 import com.bridgeLabz.utility.Util;
 import com.bridgeLabz.utility.UtilJson;
 
+/**
+ * This class has the implementation of the Stock market of both Company and
+ * Customers. where company has the functionality of adding and removing a share
+ * from the market. Customer has the functionality of buying a share or selling
+ * a share from the market. And all instructions to run the share market.
+ * 
+ * @author Durgasankar Mishra
+ * @created 2019-12-07
+ * @version 11.0.5
+ */
 public class Implementation {
-
+	/**
+	 * Objects of CompanyShare and CustomerOperation class
+	 */
 	private static CompanyShare companyShare = new CompanyShare();
 	private static CustomerOperation customerTrading = new CustomerOperation();
 
-	public void displayCompanyInstructions() {
+	/**
+	 * Instructions followed during execution of Company class
+	 */
+	private void displayCompanyInstructions() {
 		System.out.println("Available actions :\npress :");
 		System.out.println("\t1 -> Switch to main menu.\n" + "\t2 -> Add new share.\n" + "\t3 -> Print all shares\n"
 				+ "\t4 -> Print instructions.\n" + "\t5 -> Quit the application completely.\n"
@@ -20,7 +35,10 @@ public class Implementation {
 
 	}
 
-	public void displayCustomerInstructions() {
+	/**
+	 * Instructions followed during execution of Customer class
+	 */
+	private void displayCustomerInstructions() {
 		System.out.println("Available actions :\npress :");
 		System.out.println("\t1 -> Switch to main menu.\n" + "\t2 -> Buy a share\n"
 				+ "\t3 -> Print customers portfolio.\n" + "\t4 -> Print instructions.\n"
@@ -29,16 +47,33 @@ public class Implementation {
 
 	}
 
-	public static String writeCompanyDataToJson() {
+	/**
+	 * writes all data of Company to JSON file and returns the string
+	 * 
+	 * @return String values of JSON
+	 */
+	private static String writeCompanyDataToJson() {
 		String companyBook = UtilJson.convertObjectToJson(CompanyOperation.companyShareList);
 		return companyBook;
 	}
 
-	public static String writeCustomerDataToJson() {
+	/**
+	 * writes all data of customer to JSON file and returns the string
+	 * 
+	 * @return String values of JSON
+	 */
+	private static String writeCustomerDataToJson() {
 		String companyBook = UtilJson.convertObjectToJson(CustomerOperation.customerShareList);
 		return companyBook;
 	}
 
+	/**
+	 * Allows user to a do a particular addition operation at a time . after each
+	 * operation he will be reDicted to main menu option. Also he has one ability to
+	 * close the Application at particular time when he want to stop it.
+	 * 
+	 * @param isQuitApplication Boolean type as input parameter.
+	 */
 	public void companyOperation(boolean isQuitApplication) {
 
 		isQuitApplication = false;
@@ -82,7 +117,14 @@ public class Implementation {
 		}
 	}
 
-	public void customerOperation(boolean isQuitApplication) {
+	/**
+	 * Allows user to a do a particular addition operation at a time . after each
+	 * operation he will be reDicted to main menu option. Also he has one ability to
+	 * close the Application at particular time when he want to stop it.
+	 * 
+	 * @param isQuitApplication Boolean type as input parameter.
+	 */
+	private void customerOperation(boolean isQuitApplication) {
 		displayCustomerInstructions();
 		isQuitApplication = false;
 		boolean isSwitch = false;
