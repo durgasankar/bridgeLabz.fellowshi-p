@@ -1,13 +1,15 @@
 package com.bridgeLabz.objectOrientedPrograms.stockMarket;
 
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.company.CompanyOperation;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.company.CompanyShare;
-import com.bridgeLabz.objectOrientedPrograms.stockMarket.customer.TradingOperation;
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.customer.CustomerOperation;
 import com.bridgeLabz.utility.Util;
+import com.bridgeLabz.utility.UtilJson;
 
 public class Implementation {
 
 	private static CompanyShare companyShare = new CompanyShare();
-	private static TradingOperation trading = new TradingOperation();
+	private static CustomerOperation customerTrading = new CustomerOperation();
 
 	public void displayCompanyInstructions() {
 		System.out.println("Available actions :\npress :");
@@ -20,12 +22,21 @@ public class Implementation {
 
 	public void displayCustomerInstructions() {
 		System.out.println("Available actions :\npress :");
-		System.out.println(
-				"\t1 -> Switch to main menu.\n" + "\t2 -> Buy a share\n" + "\t3 -> Print customers portfolio.\n"
-						+ "\t4 -> Print instructions.\n" + "\t5 -> Print company shares.\n"
-						+ "\t6 -> Quit the application.\n" + "\t7 -> Sell shares.");
+		System.out.println("\t1 -> Switch to main menu.\n" + "\t2 -> Buy a share\n"
+				+ "\t3 -> Print customers portfolio.\n" + "\t4 -> Print instructions.\n"
+				+ "\t5 -> Print company shares.\n" + "\t6 -> Quit the application.\n" + "\t7 -> Sell shares.");
 		System.out.println("choose your action :");
 
+	}
+
+	public static String writeCompanyDataToJson() {
+		String companyBook = UtilJson.convertObjectToJson(CompanyOperation.companyShareList);
+		return companyBook;
+	}
+
+	public static String writeCustomerDataToJson() {
+		String companyBook = UtilJson.convertObjectToJson(CustomerOperation.customerShareList);
+		return companyBook;
 	}
 
 	public void companyOperation(boolean isQuitApplication) {
@@ -44,6 +55,7 @@ public class Implementation {
 
 			case 2:
 				companyShare.addNewShare();
+				Util.writeToFile(writeCompanyDataToJson(), "company.json");
 				break;
 
 			case 3:
@@ -61,6 +73,7 @@ public class Implementation {
 
 			case 6:
 				companyShare.removeShare();
+				Util.writeToFile(writeCompanyDataToJson(), "company.json");
 				break;
 
 			default:
@@ -82,11 +95,13 @@ public class Implementation {
 				break;
 
 			case 2:
-				trading.buyShare();
+				customerTrading.buyShare();
+				Util.writeToFile(writeCompanyDataToJson(), "company.json");
+				Util.writeToFile(writeCustomerDataToJson(), "customer.json");
 				break;
 
 			case 3:
-				trading.displayCustomerPortfolio();
+				customerTrading.displayCustomerPortfolio();
 				break;
 
 			case 4:
@@ -103,7 +118,9 @@ public class Implementation {
 				break;
 
 			case 7:
-				trading.sellShare();
+				customerTrading.sellShare();
+				Util.writeToFile(writeCompanyDataToJson(), "company.json");
+				Util.writeToFile(writeCustomerDataToJson(), "customer.json");
 				break;
 
 			default:
