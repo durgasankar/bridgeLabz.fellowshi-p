@@ -5,10 +5,12 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 /**
  * This class contains JSON utility functionality like => convertJavaToJson, =>
- * convertJsonToJava
+ * convertJsonToJava, => readDetails,
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-30
@@ -76,7 +78,28 @@ public class UtilJson {
 		}
 		return result;
 	}
-	
 
+	/**
+	 * This function takes String file path as input parameter and read the data
+	 * present in the file and pall all String data to JSON parser and returns
+	 * objectFile.
+	 * 
+	 * @param filename path as String input parameter
+	 * @return JSON object
+	 * @created 2019-12-08
+	 */
+	public static JSONObject readDetails(String filename) {
+		String readString = Util.readFile(filename);
+		JSONParser parser = new JSONParser();
+		JSONObject objectFile = null;
+		try {
+			objectFile = (JSONObject) parser.parse(readString);
+			return objectFile;
+		} catch (Exception e) {
+			System.out.println("Exception while reading json file " + e.getMessage());
+		}
+		return null;
+
+	}
 
 }
