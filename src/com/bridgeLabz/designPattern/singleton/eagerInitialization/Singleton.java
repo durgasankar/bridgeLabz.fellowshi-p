@@ -1,4 +1,4 @@
-package com.bridgeLabz.designPattern.singletonLink;
+package com.bridgeLabz.designPattern.singleton.eagerInitialization;
 
 import java.io.Serializable;
 
