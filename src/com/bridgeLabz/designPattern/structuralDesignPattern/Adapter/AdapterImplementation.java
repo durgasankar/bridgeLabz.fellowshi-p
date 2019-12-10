@@ -1,4 +1,4 @@
-package com.bridgeLabz.designPattern.structuralDesignPattern.Adapter;
+package com.bridgeLabz.designPattern.structuralDesignPattern.adapter;
 
 /**
  * This class has all the Implementation of SocketClassAdapter and

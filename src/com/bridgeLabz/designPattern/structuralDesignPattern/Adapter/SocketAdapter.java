@@ -1,4 +1,4 @@
-package com.bridgeLabz.designPattern.structuralDesignPattern.Adapter;
+package com.bridgeLabz.designPattern.structuralDesignPattern.adapter;
 
 /**
  * Interface has Three methods of Volt class type.

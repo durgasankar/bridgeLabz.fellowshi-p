@@ -1,4 +1,4 @@
-package com.bridgeLabz.designPattern.structuralDesignPattern.Adapter;
+package com.bridgeLabz.designPattern.structuralDesignPattern.adapter;
 
 /**
  * This class Extends SockClass and Implements SocketAdapter Interface which has

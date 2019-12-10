@@ -1,4 +1,4 @@
-package com.bridgeLabz.designPattern.structuralDesignPattern.Adapter;
+package com.bridgeLabz.designPattern.structuralDesignPattern.adapter;
 
 /**
  * This class Implements SocketAdapter Interface which has 3 undefined methods
