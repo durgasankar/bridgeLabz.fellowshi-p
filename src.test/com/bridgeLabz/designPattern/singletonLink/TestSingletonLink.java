@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 import java.lang.reflect.Constructor;
 import org.junit.Test;
 
-import com.bridgeLabz.designPattern.singleton.eagerInitialization.Singleton;
+import com.bridgeLabz.designPattern.creationalDesignPattern.singleton.eagerInitialization.Singleton;
 
 public class TestSingletonLink {
 
