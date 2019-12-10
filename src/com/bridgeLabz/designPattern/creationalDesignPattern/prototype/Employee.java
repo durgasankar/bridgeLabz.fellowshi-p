@@ -56,6 +56,7 @@ public class Employee implements Cloneable {
 	/**
 	 * Override method of clone which transfer all data of main list to a temporary
 	 * list and returns new object of the list.
+	 * @throws CloneNotSupportedException
 	 */
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
