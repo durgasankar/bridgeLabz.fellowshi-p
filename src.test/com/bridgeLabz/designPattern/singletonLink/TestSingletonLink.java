@@ -27,7 +27,7 @@ public class TestSingletonLink {
 	public void test_singletonLink_compareByHashCode_reflectionAPI() throws Exception {
 		Object ref1HashCode = Singleton.getInstance().hashCode();
 		@SuppressWarnings("rawtypes")
-		Class clazz = Class.forName("com.bridgeLabz.designPattern.singletonLink.Singleton");
+		Class clazz = Class.forName("com.bridgeLabz.designPattern.creationalDesignPattern.singleton.eagerInitialization.Singleton");
 		@SuppressWarnings("unchecked")
 		Constructor<Singleton> ctor = clazz.getDeclaredConstructor();
 		ctor.setAccessible(true);
@@ -36,5 +36,5 @@ public class TestSingletonLink {
 		assertNotEquals(ref1HashCode, ref2HashCode);
 
 	}
-
+	
 }
