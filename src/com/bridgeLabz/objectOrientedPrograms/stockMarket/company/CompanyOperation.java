@@ -2,6 +2,7 @@ package com.bridgeLabz.objectOrientedPrograms.stockMarket.company;
 
 import java.util.ArrayList;
 
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.Transaction;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.model.Share;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyServices;
 
@@ -13,10 +14,10 @@ import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyService
  * @author Durgasankar Mishra
  * @created 2019-12-06
  * @modified 2019-12-12
- * @updated -> addition of interface.
+ * @updated -> addition of interface. addition of findShare 
  * @version 11.0.5
  */
-public class CompanyOperation implements ICompanyServices {
+public class CompanyOperation extends Transaction implements ICompanyServices {
 	public static ArrayList<Share> companyShareList;
 
 	/**
@@ -46,6 +47,7 @@ public class CompanyOperation implements ICompanyServices {
 			return false;
 		}
 		companyShareList.add(newShare);
+		transaction.enQueue(newShare);
 		return true;
 	}
 
@@ -81,8 +83,19 @@ public class CompanyOperation implements ICompanyServices {
 			return false;
 		}
 		companyShareList.remove(foundPosition);
+		transaction.enQueue(findShare(foundPosition));
 		System.out.println("Share of comapany " + share.getName() + " successfully removed.");
 		return true;
+	}
+
+	/**
+	 * takes index position as input parameter and returns share of that position
+	 * 
+	 * @param indexPosition as Integer input parameter
+	 * @return Share Class type data.
+	 */
+	private Share findShare(int indexPosition) {
+		return companyShareList.get(indexPosition);
 	}
 
 	/**

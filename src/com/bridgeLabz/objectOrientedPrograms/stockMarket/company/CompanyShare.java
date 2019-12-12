@@ -1,8 +1,5 @@
 package com.bridgeLabz.objectOrientedPrograms.stockMarket.company;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.model.Share;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyServices;
 import com.bridgeLabz.utility.Util;
@@ -37,10 +34,7 @@ public class CompanyShare {
 		double sharePrice = Util.scanner.nextDouble();
 		System.out.println("Enter the share Quantity :");
 		int shareQuantity = Util.scanner.nextInt();
-		LocalDate date = LocalDate.now();
-		LocalTime time = LocalTime.now();
-
-		Share newShare = Share.createShare(companyName, companySymbol, sharePrice, shareQuantity, date, time);
+		Share newShare = Share.createShare(companyName, companySymbol, sharePrice, shareQuantity);
 		if (companyOperation.AddShare(newShare)) {
 			System.out.println("Share of " + newShare.getSymbol() + " company added sucessfully.");
 		} else {

@@ -1,9 +1,8 @@
 package com.bridgeLabz.objectOrientedPrograms.stockMarket.customer;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.Transaction;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.company.CompanyOperation;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.model.Share;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyServices;
@@ -22,7 +21,7 @@ import com.bridgeLabz.utility.Util;
  * @updated -> addition of Interface.
  * @version 11.0.5
  */
-public class CustomerOperation implements ICustomerServices {
+public class CustomerOperation extends Transaction implements ICustomerServices {
 
 	public static ArrayList<Share> customerShareList;
 
@@ -70,12 +69,14 @@ public class CustomerOperation implements ICustomerServices {
 		String name = foundShare.getName();
 		String symbol = foundShare.getSymbol();
 		double price = foundShare.getPrice();
-		LocalDate date = LocalDate.now();
-		LocalTime time = LocalTime.now();
+		String date = foundShare.getDate();
+		String time = foundShare.getDate();
 		Share UpdatedShare = Share.createShare(name, symbol, price, updatedQuantity, date, time);
 		CompanyOperation.companyShareList.set(foundPosition, UpdatedShare);
 		Share customerPurchase = Share.createShare(name, symbol, price, quantity, date, time);
 		if (customerShareList.add(customerPurchase)) {
+			//transaction record
+			transaction.enQueue(customerPurchase);
 			System.out.println("Thank you for purchasing " + customerPurchase.getSymbol() + " Share.");
 		} else {
 			System.out.println("Error purchasing share.");
@@ -175,8 +176,8 @@ public class CustomerOperation implements ICustomerServices {
 		String name = foundShareInCompany.getName();
 		String symbol = foundShareInCompany.getSymbol();
 		double price = foundShareInCompany.getPrice();
-		LocalDate date = LocalDate.now();
-		LocalTime time = LocalTime.now();
+		String date = foundShareInCompany.getDate();
+		String time = foundShareInCompany.getDate();
 		Share UpdatedCustomerShare = Share.createShare(name, symbol, price, updatedCustomerQuantity, date, time);
 		Share UpdatedCompanyShare = Share.createShare(name, symbol, price, updatedCompanyQuantity, date, time);
 
@@ -192,6 +193,8 @@ public class CustomerOperation implements ICustomerServices {
 			System.out
 					.println("Sold quantity " + quantity + " remaining quantity " + UpdatedCustomerShare.getQuantity());
 		}
+		//record of transaction
+		transaction.enQueue(UpdatedCustomerShare);
 
 	}
 
