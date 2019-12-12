@@ -1,49 +1,32 @@
 package com.bridgeLabz.objectOrientedPrograms.addressBook;
 
 import java.util.ArrayList;
+import com.bridgeLabz.utility.UtilJson;
 
 /**
- * This class has a array list which store the data of the address book. Some
- * functionalities like add new contact, update existing contact search the
- * contact on basis of name , search the contact on basis of contact object
- * remove the contact and find the contact from the list on the basis of first
- * name and print the inDetail contact and also print on the basis of first name
- * and last name .
+ * This class Implements IOperation interface and Overrides all unimplemented
+ * functions and defines functionalities like add new contact, update existing
+ * contact search the contact on basis of name , search the contact on basis of
+ * contact object remove the contact and find the contact from the list on the
+ * basis of first name and print the inDetail contact and also print on the
+ * basis of first name and last name . and writes all value to JSON file.
  * 
  * @author Durgasankar Mishra
  * @created 2019-12-01
+ * @modified 2019-12-12
+ * @updated -> addition of Interface and addition of JSON file writing method.
  * @version 11.0.5
  */
-public class AddressBookOperations {
-	private String addressBookName;
-	protected ArrayList<Contact> addressBook;
+public class AddressBookOperations implements IOperation {
+	protected static ArrayList<Contact> addressBook;
 
 	/**
-	 * Constructor to initialize arrayList and assign the name to the address book.
+	 * Constructor to initialize arrayList
 	 * 
 	 * @param addressBookName as input parameter
 	 */
-	public AddressBookOperations(String addressBookName) {
-		this.addressBookName = addressBookName;
-		this.addressBook = new ArrayList<Contact>();
-	}
-
-	/**
-	 * getter method which returns name of address book
-	 * 
-	 * @return name of address book
-	 */
-	public String getAddressBookName() {
-		return addressBookName;
-	}
-
-	/**
-	 * setter method allows you to set the name of your address book.
-	 * 
-	 * @param addressBookName
-	 */
-	public void setAddressBookName(String addressBookName) {
-		this.addressBookName = addressBookName;
+	public AddressBookOperations() {
+		addressBook = new ArrayList<Contact>();
 	}
 
 	/**
@@ -53,6 +36,7 @@ public class AddressBookOperations {
 	 * @param contact class type as input parameter.
 	 * @return boolean value.
 	 */
+	@Override
 	public boolean addNewContact(Contact contact) {
 		if (findContact(contact.getFirstName()) >= 0) {
 			System.out.println("Contact already exist!");
@@ -72,7 +56,7 @@ public class AddressBookOperations {
 	 * @return Integer value.
 	 */
 	private int findContact(Contact contact) {
-		return this.addressBook.indexOf(contact);
+		return addressBook.indexOf(contact);
 	}
 
 	/**
@@ -85,7 +69,7 @@ public class AddressBookOperations {
 	 */
 	private int findContact(String firstName) {
 		for (int i = 0; i < addressBook.size(); i++) {
-			Contact fetchedContact = this.addressBook.get(i);
+			Contact fetchedContact = addressBook.get(i);
 			if (fetchedContact.getFirstName().equals(firstName)) {
 				return i;
 			}
@@ -102,13 +86,13 @@ public class AddressBookOperations {
 	 * @param newContact as class type input parameter
 	 * @return boolean value
 	 */
+	@Override
 	public boolean updateContact(Contact oldContact, Contact newContact) {
 		int foundPosition = findContact(oldContact);
 		if (foundPosition < 0) {
 			System.out.println(oldContact.toString() + " was not found!");
 		}
-		this.addressBook.set(foundPosition, newContact);
-		System.out.println(oldContact.getFirstName() + " updated successfully. ");
+		addressBook.set(foundPosition, newContact);
 		return true;
 	}
 
@@ -117,9 +101,8 @@ public class AddressBookOperations {
 	 * This function checks whether the contact is present or not in the list, if
 	 * present then it simply display the full Name of the contact else return null.
 	 * 
-	 * @param contact class type input parameter
-	 * @return String value
 	 */
+	@Override
 	public String searchContact(Contact contact) {
 		if (findContact(contact) >= 0) {
 			return contact.toString();
@@ -131,14 +114,12 @@ public class AddressBookOperations {
 	 * This function takes FirstName as input parameter and checks the index
 	 * position of the contact. if found then it returns whole contact class type
 	 * value else return null value.
-	 * 
-	 * @param firstName as String input parameter
-	 * @return Contact class type
 	 */
+	@Override
 	public Contact searchContact(String firstName) {
 		int position = findContact(firstName);
 		if (position >= 0) {
-			return this.addressBook.get(position);
+			return addressBook.get(position);
 		}
 		return null;
 	}
@@ -148,16 +129,15 @@ public class AddressBookOperations {
 	 * Present or not, if found then successfully delete the contact else reply with
 	 * a message that contact not exist.
 	 * 
-	 * @param contact as class type input parameter
-	 * @return boolean value
 	 */
+	@Override
 	public boolean deleteContact(Contact contact) {
 		int foundPosition = findContact(contact);
 		if (foundPosition < 0) {
 			System.out.println(contact.toString() + " was not found!");
 			return false;
 		}
-		this.addressBook.remove(foundPosition);
+		addressBook.remove(foundPosition);
 		System.out.println(contact.toString() + " successfully deleted!");
 		return true;
 	}
@@ -166,6 +146,7 @@ public class AddressBookOperations {
 	 * just prints the complete information of the customer like first name, last
 	 * name, address, mail id, mobile number.
 	 */
+	@Override
 	public void printIndetailContact() {
 		System.out.println("contact list :");
 		for (int i = 0; i < addressBook.size(); i++) {
@@ -179,13 +160,23 @@ public class AddressBookOperations {
 	/**
 	 * prints the complete name of the customer first name and last name.
 	 */
+	@Override
 	public void printFullName() {
 		System.out.println("contact list :");
 		for (int i = 0; i < addressBook.size(); i++) {
 			System.out.println((i + 1) + " . " + addressBook.get(i).toString());
 		}
 	}
-	
-	
+
+	/**
+	 * writes all data of address book to JSON file and returns the string
+	 * 
+	 * @return String values of JSON
+	 */
+	@Override
+	public String writeDataToJson() {
+		String addressBookJson = UtilJson.convertObjectToJson(addressBook);
+		return addressBookJson;
+	}
 
 }
