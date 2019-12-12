@@ -2,6 +2,9 @@ package com.bridgeLabz.objectOrientedPrograms.stockMarket.company;
 
 import java.util.ArrayList;
 
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.model.Share;
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyServices;
+
 /**
  * This class has the functionality of add a new share, remove a share, find a
  * share from the list, print short hand representation of the list, print
@@ -9,9 +12,11 @@ import java.util.ArrayList;
  * 
  * @author Durgasankar Mishra
  * @created 2019-12-06
+ * @modified 2019-12-12
+ * @updated -> addition of interface.
  * @version 11.0.5
  */
-public class CompanyOperation {
+public class CompanyOperation implements ICompanyServices {
 	public static ArrayList<Share> companyShareList;
 
 	/**
@@ -24,8 +29,8 @@ public class CompanyOperation {
 	/**
 	 * Getter method to get arrayList
 	 * 
-	 * @return ArrayList of <Share> type
 	 */
+	@Override
 	public ArrayList<Share> getCompanyShareList() {
 		return companyShareList;
 	}
@@ -33,10 +38,8 @@ public class CompanyOperation {
 	/**
 	 * takes Share class type input as input parameter and checks whether it is
 	 * present or not. if not present then add the share to the Company's list.
-	 * 
-	 * @param newShare of class type as input parameter.
-	 * @return Boolean value
 	 */
+	@Override
 	public boolean AddShare(Share newShare) {
 		if (findShare(newShare.getSymbol()) >= 0) {
 			System.out.println("Share already exist.");
@@ -69,9 +72,8 @@ public class CompanyOperation {
 	 * or not, if found then successfully delete the Share else reply with a message
 	 * that Share not exist.
 	 * 
-	 * @param share as class type input parameter
-	 * @return boolean value
 	 */
+	@Override
 	public boolean removeShare(Share share) {
 		int foundPosition = findShare(share.getSymbol());
 		if (foundPosition < 0) {
@@ -87,9 +89,8 @@ public class CompanyOperation {
 	 * Takes symbol as input parameter and matches with all index of list. If found
 	 * then return the particular class.
 	 * 
-	 * @param symbol as String input parameter.
-	 * @return <Share> Class type input parameter.
 	 */
+	@Override
 	public Share SearchShare(String symbol) {
 		int position = findShare(symbol);
 		if (position >= 0) {
@@ -102,6 +103,7 @@ public class CompanyOperation {
 	 * Display only the Symbol and Quantity of all the stocks present in the list by
 	 * iterating through the loop.
 	 */
+	@Override
 	public void displayShortList() {
 		System.out.println("Symbol\t  \tQuantity");
 		for (int i = 0; i < companyShareList.size(); i++) {
@@ -114,6 +116,7 @@ public class CompanyOperation {
 	 * Prints in detail list giving all informations of the stock iterating through
 	 * the loop.
 	 */
+	@Override
 	public void displayFullList() {
 		System.out.println("Symbol\t  \tQuantity");
 		for (int i = 0; i < companyShareList.size(); i++) {

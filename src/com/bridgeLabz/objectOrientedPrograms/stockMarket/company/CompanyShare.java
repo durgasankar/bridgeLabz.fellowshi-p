@@ -3,6 +3,8 @@ package com.bridgeLabz.objectOrientedPrograms.stockMarket.company;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.model.Share;
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyServices;
 import com.bridgeLabz.utility.Util;
 
 /**
@@ -17,7 +19,7 @@ import com.bridgeLabz.utility.Util;
  */
 public class CompanyShare {
 
-	private static CompanyOperation companyOperation = new CompanyOperation();
+	private static ICompanyServices companyOperation = new CompanyOperation();
 
 	/**
 	 * Allows the user to give input of Company name, Company Symbol, Price and

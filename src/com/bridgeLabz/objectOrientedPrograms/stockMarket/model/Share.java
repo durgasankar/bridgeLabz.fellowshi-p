@@ -1,8 +1,7 @@
-package com.bridgeLabz.objectOrientedPrograms.stockMarket.company;
+package com.bridgeLabz.objectOrientedPrograms.stockMarket.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
 /**
  * This class has the all functionality of a stock Share like name, symbol,
  * price, quantity, Time, Date.
@@ -11,6 +10,7 @@ import java.time.LocalTime;
  * @created 2019-12-07
  * @version 11.0.5
  */
+
 public class Share {
 	private String name;
 	private String symbol;

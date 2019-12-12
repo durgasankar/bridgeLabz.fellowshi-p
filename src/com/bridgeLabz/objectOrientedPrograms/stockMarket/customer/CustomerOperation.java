@@ -5,7 +5,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.company.CompanyOperation;
-import com.bridgeLabz.objectOrientedPrograms.stockMarket.company.Share;
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.model.Share;
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyServices;
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICustomerServices;
 import com.bridgeLabz.utility.Util;
 
 /**
@@ -16,9 +18,11 @@ import com.bridgeLabz.utility.Util;
  * 
  * @author Durgasankar Mishra
  * @created 2019-12-07
+ * @modified 2019-12-12
+ * @updated -> addition of Interface.
  * @version 11.0.5
  */
-public class CustomerOperation {
+public class CustomerOperation implements ICustomerServices {
 
 	public static ArrayList<Share> customerShareList;
 
@@ -32,7 +36,7 @@ public class CustomerOperation {
 	/**
 	 * Object of ComapanyOperation class to access functions of that class.
 	 */
-	private CompanyOperation companyOperation = new CompanyOperation();
+	private ICompanyServices companyOperation = new CompanyOperation();
 
 	/**
 	 * This function ask the Customer user to enter the share which he want to
@@ -41,6 +45,7 @@ public class CustomerOperation {
 	 * purchase that share. If not present in the market it just simply reply with
 	 * error message if present then that share is added to the person's list.
 	 */
+	@Override
 	public void buyShare() {
 		System.out.println("Enter Share symbol :");
 		String inputSymbol = Util.scanner.next();
@@ -120,6 +125,7 @@ public class CustomerOperation {
 	 * Display only the Symbol and Quantity of all the stocks present in the list of
 	 * Customers by iterating through the loop.
 	 */
+	@Override
 	public void displayCustomerPortfolio() {
 		System.out.println("Symbol\t  \tQuantity");
 		for (int i = 0; i < customerShareList.size(); i++) {
@@ -138,6 +144,7 @@ public class CustomerOperation {
 	 * customer list. With each success or failure particular error message is
 	 * displayed to the customer.
 	 */
+	@Override
 	public void sellShare() {
 		System.out.println("Enter Share sysmbol :");
 		String inputSymbol = Util.scanner.next();
@@ -150,7 +157,7 @@ public class CustomerOperation {
 			System.out.println("company Share " + foundShareInCompany.getSymbol() + " was not found.");
 			return;
 		}
-
+		// searching existing share
 		Share foundShareInCustomer = findShare(customerShareList, inputSymbol);
 		if (foundShareInCustomer == null) {
 			System.out.println(inputSymbol + " share not found in found");
