@@ -142,6 +142,8 @@ public class Operation {
 				break;
 
 			case 2:
+				System.out.println("Available shares to buy :");
+				companyShare.displayShortSharesList();
 				customerTrading.buyShare();
 				Util.writeToFile(writeCompanyDataToJson(), COMPANY_PATH);
 				Util.writeToFile(writeCustomerDataToJson(), CUSTOMER_PATH);

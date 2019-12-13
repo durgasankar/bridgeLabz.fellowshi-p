@@ -47,7 +47,7 @@ public class CompanyOperation extends Transaction implements ICompanyServices {
 			return false;
 		}
 		companyShareList.add(newShare);
-		transaction.enQueue(newShare.getDateTime());
+		transactionDateTime.enQueue(newShare.getDateTime());
 		return true;
 	}
 
@@ -83,7 +83,7 @@ public class CompanyOperation extends Transaction implements ICompanyServices {
 			return false;
 		}
 		companyShareList.remove(foundPosition);
-		transaction.enQueue(findShare(foundPosition));
+		transactionDateTime.enQueue(findShare(foundPosition));
 		System.out.println("Share of comapany " + share.getName() + " successfully removed.");
 		return true;
 	}

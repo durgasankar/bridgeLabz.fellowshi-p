@@ -1,6 +1,7 @@
 package com.bridgeLabz.objectOrientedPrograms.stockMarket.company;
 
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.model.Share;
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.recordDetails.Transaction;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyServices;
 import com.bridgeLabz.utility.Util;
 
@@ -12,9 +13,12 @@ import com.bridgeLabz.utility.Util;
  * 
  * @author Durgasankar Mishra
  * @created 2019-12-07
+ * @modified 2019-12-13
+ * @updated -> adding record of transaction date to queue and stock symbol to
+ *          stack.
  * @version 11.0.5
  */
-public class CompanyShare {
+public class CompanyShare extends Transaction {
 
 	private static ICompanyServices companyOperation = new CompanyOperation();
 
@@ -40,6 +44,10 @@ public class CompanyShare {
 		} else {
 			System.out.println("Cannot add " + newShare.getName() + "'s company's share");
 		}
+		// record of transaction symbol
+		transactionSymbol.push(newShare.getSymbol() + " : Co-add");
+		// record of transaction date time
+		transactionDateTime.enQueue("Co-add : " + newShare.getDateTime());
 	}
 
 	/**
@@ -61,6 +69,10 @@ public class CompanyShare {
 		} else {
 			System.out.println("Error deleting record.");
 		}
+		// record of transaction symbol
+		transactionDateTime.enQueue("Co-removed : " + existingShare.getDateTime());
+		// record of transaction time
+		transactionSymbol.push(existingShare.getSymbol() + " : Co-removed");
 
 	}
 

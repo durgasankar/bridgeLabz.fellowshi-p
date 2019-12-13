@@ -1,6 +1,6 @@
 package com.bridgeLabz.objectOrientedPrograms.stockMarket.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -28,14 +28,14 @@ public class Share {
 	 * @param symbol   as String input representation of the Stock.
 	 * @param price    as double input parameter
 	 * @param quantity as Integer input parameter.
-	 * @param dateTime     as Local System date and time
+	 * @param dateTime as Local System date and time
 	 */
 	public Share(String name, String symbol, double price, int quantity, String dateTime) {
 		this.name = name;
 		this.symbol = symbol;
 		this.price = price;
 		this.quantity = quantity;
-		this.dateTime = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+		this.dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class Share {
 		this.symbol = symbol;
 		this.price = price;
 		this.quantity = quantity;
-		this.dateTime = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+		this.dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 	}
 
 	/**
@@ -134,7 +134,6 @@ public class Share {
 	public String getDateTime() {
 		return dateTime;
 	}
-
 
 	/**
 	 * This function takes name, symbol, price, quantity, date, time as input

@@ -40,8 +40,8 @@ public class Implementation {
 		String specialization = Util.scanner.next();
 		System.out.println("Enter Doctor's availabilty :");
 		String availabile = Util.scanner.next();
-		DoctorDetail.addDoctor(name, id, specialization, availabile);
-		String jsonData = UtilJson.convertObjectToJson(DoctorDetail.addDoctor(name, id, specialization, availabile));
+		DoctorDetail newDoctor = DoctorDetail.addDoctor(name, id, specialization, availabile);
+		String jsonData = UtilJson.convertObjectToJson(newDoctor);
 		Util.writeToFile(jsonData, PATH_DOCTOR);
 
 	}
@@ -60,7 +60,7 @@ public class Implementation {
 		System.out.println("Specialization: " + doctor.getSpecialization() + "\t");
 		System.out.println("Availability: " + doctor.getAvailability() + "\t");
 	}
-	
+
 	public static void readPatientDetails() {
 		String patientFile = Util.readFile(PATH_PATIENT);
 		PatientDetail patient = UtilJson.convertJsonToJava(patientFile, PatientDetail.class);
@@ -70,11 +70,9 @@ public class Implementation {
 		System.out.println("mobileNumber :" + patient.getMobileNumber() + "\t");
 		System.out.println("Age :" + patient.getAge() + "\t");
 	}
-	
 
-	
 	public void updatePatient() {
-		
+
 	}
 
 	public static void main(String[] args) {

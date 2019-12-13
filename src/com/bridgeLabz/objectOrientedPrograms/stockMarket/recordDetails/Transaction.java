@@ -1,9 +1,11 @@
 package com.bridgeLabz.objectOrientedPrograms.stockMarket.recordDetails;
 
 import com.bridgeLabz.dataStructurePrograms.generics.Queue;
+import com.bridgeLabz.dataStructurePrograms.generics.Stack;
 
 /**
- * This class keeps all the transaction records of share holder company
+ * This class keeps all the transaction records of share holder company and
+ * share symbol transaction record.
  * 
  * @author Durgasankar Mishra
  * @created 2019-12-13
@@ -11,12 +13,20 @@ import com.bridgeLabz.dataStructurePrograms.generics.Queue;
  */
 public class Transaction {
 
-	public static Queue<String> transaction = new Queue<String>();
+	public static Queue<String> transactionDateTime = new Queue<String>();
+
+	public static Stack<String> transactionSymbol = new Stack<String>();
 
 	/**
 	 * prints the transaction details of the company and customer.
 	 */
-	public static void display() {
-		transaction.print();
+	public static void displayTimeRecord() {
+		transactionDateTime.print();
+	}
+	/**
+	 * print the transaction symbol of the company of on going transaction.
+	 */
+	public static void displaySymbolRecord() {
+		transactionSymbol.print();
 	}
 }

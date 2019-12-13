@@ -1,13 +1,12 @@
 package com.bridgeLabz.objectOrientedPrograms.stockMarket.customer;
 
-import java.util.ArrayList;
-
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.company.CompanyOperation;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.model.Share;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.recordDetails.Transaction;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyServices;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICustomerServices;
 import com.bridgeLabz.utility.Util;
+import java.util.ArrayList;
 
 /**
  * This class gives the customer to do actions like purchasing a share from the
@@ -76,7 +75,9 @@ public class CustomerOperation extends Transaction implements ICustomerServices 
 			Share customerPurchase = Share.createShare(name, symbol, price, quantity, dateTime);
 			if (customerShareList.add(customerPurchase)) {
 				// transaction record
-				transaction.enQueue(customerPurchase.getDateTime());
+				transactionDateTime.enQueue("Cu-buy : " + customerPurchase.getDateTime());
+				// record of transaction symbol
+				transactionSymbol.push(customerPurchase.getSymbol() + " : Cu-buy");
 				System.out.println("Thank you for purchasing " + customerPurchase.getSymbol() + " Share.");
 			} else {
 				System.out.println("Error purchasing share.");
@@ -196,7 +197,9 @@ public class CustomerOperation extends Transaction implements ICustomerServices 
 					.println("Sold quantity " + quantity + " remaining quantity " + UpdatedCustomerShare.getQuantity());
 		}
 		// record of transaction
-		transaction.enQueue(UpdatedCustomerShare.getDateTime());
+		transactionDateTime.enQueue("Cu-sell : " + UpdatedCustomerShare.getDateTime());
+		// record of transaction symbol
+		transactionSymbol.push(UpdatedCustomerShare.getSymbol() + " : Cu-sell");
 
 	}
 
