@@ -14,7 +14,7 @@ import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyService
  * @author Durgasankar Mishra
  * @created 2019-12-06
  * @modified 2019-12-12
- * @updated -> addition of interface. addition of findShare 
+ * @updated -> addition of interface. addition of findShare
  * @version 11.0.5
  */
 public class CompanyOperation extends Transaction implements ICompanyServices {
@@ -89,7 +89,8 @@ public class CompanyOperation extends Transaction implements ICompanyServices {
 	}
 
 	/**
-	 * takes index position as input parameter and returns share time of that position
+	 * takes index position as input parameter and returns share time of that
+	 * position
 	 * 
 	 * @param indexPosition as Integer input parameter
 	 * @return Share Class type data.

@@ -1,4 +1,4 @@
-package com.bridgeLabz.objectOrientedPrograms.inventoryManagement;
+package com.bridgeLabz.objectOrientedPrograms.inventoryManagement.model;
 
 /**
  * This class has the basic functionality of name weight and price along with
