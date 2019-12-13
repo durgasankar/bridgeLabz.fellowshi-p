@@ -1,6 +1,7 @@
 package com.bridgeLabz.objectOrientedPrograms.stockMarket;
 
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.operarion.Operation;
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.recordDetails.Transaction;
 import com.bridgeLabz.utility.Util;
 
 /**
@@ -33,6 +34,10 @@ public class Implementation {
 
 			case 3:
 				isQuitApplication = true;
+				break;
+				
+			case 4:
+				Transaction.display();
 				break;
 
 			default:

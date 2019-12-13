@@ -1,7 +1,6 @@
 package com.bridgeLabz.objectOrientedPrograms.stockMarket.model;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -20,8 +19,7 @@ public class Share {
 	private String symbol;
 	private double price;
 	private int quantity;
-	private String date;
-	private String time;
+	private String dateTime;
 
 	/**
 	 * Constructor to initialize the following parameter.
@@ -30,17 +28,14 @@ public class Share {
 	 * @param symbol   as String input representation of the Stock.
 	 * @param price    as double input parameter
 	 * @param quantity as Integer input parameter.
-	 * @param date     as Local System date
-	 * @param time     as local System time.
+	 * @param dateTime     as Local System date and time
 	 */
-	public Share(String name, String symbol, double price, int quantity, String date, String time) {
+	public Share(String name, String symbol, double price, int quantity, String dateTime) {
 		this.name = name;
 		this.symbol = symbol;
 		this.price = price;
 		this.quantity = quantity;
-
-		this.date = LocalDate.now().format(DateTimeFormatter.ofPattern("d/MM/uuuu"));
-		this.time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+		this.dateTime = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 	}
 
 	/**
@@ -56,8 +51,7 @@ public class Share {
 		this.symbol = symbol;
 		this.price = price;
 		this.quantity = quantity;
-		this.date = LocalDate.now().format(DateTimeFormatter.ofPattern("d/MM/uuuu"));
-		this.time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+		this.dateTime = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 	}
 
 	/**
@@ -137,18 +131,10 @@ public class Share {
 	 * 
 	 * @return String value
 	 */
-	public String getDate() {
-		return date;
+	public String getDateTime() {
+		return dateTime;
 	}
 
-	/**
-	 * getter method to getTime of the Share.
-	 * 
-	 * @return String value
-	 */
-	public String getTime() {
-		return time;
-	}
 
 	/**
 	 * This function takes name, symbol, price, quantity, date, time as input
@@ -162,8 +148,8 @@ public class Share {
 	 * @param time     as local System time.
 	 * @return Class type new Share
 	 */
-	public static Share createShare(String name, String symbol, double price, int quantity, String date, String time) {
-		return new Share(name, symbol, price, quantity, date, time);
+	public static Share createShare(String name, String symbol, double price, int quantity, String dateTime) {
+		return new Share(name, symbol, price, quantity, dateTime);
 	}
 
 	/**

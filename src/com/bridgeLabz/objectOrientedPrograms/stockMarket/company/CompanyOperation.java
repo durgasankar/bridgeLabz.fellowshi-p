@@ -2,8 +2,8 @@ package com.bridgeLabz.objectOrientedPrograms.stockMarket.company;
 
 import java.util.ArrayList;
 
-import com.bridgeLabz.objectOrientedPrograms.stockMarket.Transaction;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.model.Share;
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.recordDetails.Transaction;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyServices;
 
 /**
@@ -47,7 +47,7 @@ public class CompanyOperation extends Transaction implements ICompanyServices {
 			return false;
 		}
 		companyShareList.add(newShare);
-		transaction.enQueue(newShare);
+		transaction.enQueue(newShare.getDateTime());
 		return true;
 	}
 
@@ -89,13 +89,13 @@ public class CompanyOperation extends Transaction implements ICompanyServices {
 	}
 
 	/**
-	 * takes index position as input parameter and returns share of that position
+	 * takes index position as input parameter and returns share time of that position
 	 * 
 	 * @param indexPosition as Integer input parameter
 	 * @return Share Class type data.
 	 */
-	private Share findShare(int indexPosition) {
-		return companyShareList.get(indexPosition);
+	private String findShare(int indexPosition) {
+		return companyShareList.get(indexPosition).getDateTime();
 	}
 
 	/**

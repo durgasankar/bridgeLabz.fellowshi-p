@@ -2,9 +2,9 @@ package com.bridgeLabz.objectOrientedPrograms.stockMarket.customer;
 
 import java.util.ArrayList;
 
-import com.bridgeLabz.objectOrientedPrograms.stockMarket.Transaction;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.company.CompanyOperation;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.model.Share;
+import com.bridgeLabz.objectOrientedPrograms.stockMarket.recordDetails.Transaction;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICompanyServices;
 import com.bridgeLabz.objectOrientedPrograms.stockMarket.service.ICustomerServices;
 import com.bridgeLabz.utility.Util;
@@ -51,36 +51,37 @@ public class CustomerOperation extends Transaction implements ICustomerServices 
 		Share foundShare = findShare(CompanyOperation.companyShareList, inputSymbol);
 		if (foundShare == null) {
 			System.out.println(inputSymbol + " share not found in found.");
+			return;
 		}
 
 		int foundPosition = findShare(companyOperation.getCompanyShareList(), foundShare);
 		if (foundPosition < 0) {
 			System.out.println("company Share " + foundShare.getSymbol() + " was not found.");
 			return;
-		}
-		System.out.println("Enter Quantity you want to buy :");
-		int quantity = Util.scanner.nextInt();
-
-		if (foundShare.getQuantity() < quantity) {
-			System.out.println("Opps! availabe quantity : " + foundShare.getQuantity());
-			return;
-		}
-		int updatedQuantity = foundShare.getQuantity() - quantity;
-		String name = foundShare.getName();
-		String symbol = foundShare.getSymbol();
-		double price = foundShare.getPrice();
-		String date = foundShare.getDate();
-		String time = foundShare.getDate();
-		Share UpdatedShare = Share.createShare(name, symbol, price, updatedQuantity, date, time);
-		CompanyOperation.companyShareList.set(foundPosition, UpdatedShare);
-		Share customerPurchase = Share.createShare(name, symbol, price, quantity, date, time);
-		if (customerShareList.add(customerPurchase)) {
-			//transaction record
-			transaction.enQueue(customerPurchase);
-			System.out.println("Thank you for purchasing " + customerPurchase.getSymbol() + " Share.");
 		} else {
-			System.out.println("Error purchasing share.");
+			System.out.println("Enter Quantity you want to buy :");
+			int quantity = Util.scanner.nextInt();
 
+			if (foundShare.getQuantity() < quantity) {
+				System.out.println("Opps! availabe quantity : " + foundShare.getQuantity());
+				return;
+			}
+			int updatedQuantity = foundShare.getQuantity() - quantity;
+			String name = foundShare.getName();
+			String symbol = foundShare.getSymbol();
+			double price = foundShare.getPrice();
+			String dateTime = foundShare.getDateTime();
+			Share UpdatedShare = Share.createShare(name, symbol, price, updatedQuantity, dateTime);
+			CompanyOperation.companyShareList.set(foundPosition, UpdatedShare);
+			Share customerPurchase = Share.createShare(name, symbol, price, quantity, dateTime);
+			if (customerShareList.add(customerPurchase)) {
+				// transaction record
+				transaction.enQueue(customerPurchase.getDateTime());
+				System.out.println("Thank you for purchasing " + customerPurchase.getSymbol() + " Share.");
+			} else {
+				System.out.println("Error purchasing share.");
+
+			}
 		}
 
 	}
@@ -152,6 +153,7 @@ public class CustomerOperation extends Transaction implements ICustomerServices 
 		Share foundShareInCompany = findShare(CompanyOperation.companyShareList, inputSymbol);
 		if (foundShareInCompany == null) {
 			System.out.println(inputSymbol + " share not found in company.");
+			return;
 		}
 		int foundCompanyPosition = findShare(companyOperation.getCompanyShareList(), foundShareInCompany);
 		if (foundCompanyPosition < 0) {
@@ -162,6 +164,7 @@ public class CustomerOperation extends Transaction implements ICustomerServices 
 		Share foundShareInCustomer = findShare(customerShareList, inputSymbol);
 		if (foundShareInCustomer == null) {
 			System.out.println(inputSymbol + " share not found in found");
+			return;
 		}
 		int foundCustomerPosition = findShare(customerShareList, foundShareInCustomer);
 		if (foundCustomerPosition < 0) {
@@ -176,10 +179,9 @@ public class CustomerOperation extends Transaction implements ICustomerServices 
 		String name = foundShareInCompany.getName();
 		String symbol = foundShareInCompany.getSymbol();
 		double price = foundShareInCompany.getPrice();
-		String date = foundShareInCompany.getDate();
-		String time = foundShareInCompany.getDate();
-		Share UpdatedCustomerShare = Share.createShare(name, symbol, price, updatedCustomerQuantity, date, time);
-		Share UpdatedCompanyShare = Share.createShare(name, symbol, price, updatedCompanyQuantity, date, time);
+		String dateTime = foundShareInCompany.getDateTime();
+		Share UpdatedCustomerShare = Share.createShare(name, symbol, price, updatedCustomerQuantity, dateTime);
+		Share UpdatedCompanyShare = Share.createShare(name, symbol, price, updatedCompanyQuantity, dateTime);
 
 		if (foundShareInCustomer.getQuantity() < quantity) {
 			System.out.println("Opps! availabe quantity : " + foundShareInCustomer.getQuantity());
@@ -193,8 +195,8 @@ public class CustomerOperation extends Transaction implements ICustomerServices 
 			System.out
 					.println("Sold quantity " + quantity + " remaining quantity " + UpdatedCustomerShare.getQuantity());
 		}
-		//record of transaction
-		transaction.enQueue(UpdatedCustomerShare);
+		// record of transaction
+		transaction.enQueue(UpdatedCustomerShare.getDateTime());
 
 	}
 
