@@ -16,9 +16,11 @@ import com.bridgeLabz.utility.Util;
  */
 
 public class BinarySearchImplimentation {
-	
+
+	private static final String PATH = "binarySearch.txt";
+
 	public static void main(String[] args) {
-		String[] array = Util.readFile("binarySearch.txt").split(",");
+		String[] array = Util.readFile(PATH).split(",");
 		Array.print1DArray(array);
 		System.out.println("Enter the String You want to search for :");
 		String saerchingString = Util.scanner.nextLine();
@@ -31,11 +33,9 @@ public class BinarySearchImplimentation {
 //			System.out.println("Not Found!");
 //		}
 		int position = Searching.linearSearch(array, saerchingString);
-		if (position >= 0) {
+		if (position >= 0)
 			System.out.println("Found at position : " + position);
-		} else {
-			System.out.println("Not Found!");
-		}
+		System.out.println("Not Found!");
 
 	}
 

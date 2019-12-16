@@ -3,6 +3,7 @@ package com.bridgeLabz.algorithmPrograms;
 import com.bridgeLabz.utility.Util;
 
 /**
+ * String permutation.
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-19

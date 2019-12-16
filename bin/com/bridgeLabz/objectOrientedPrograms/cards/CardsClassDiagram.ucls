@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.bridgeLabz.objectOrientedPrograms.cards.Cards" project="BL.Fellowship" 
+    file="/BL.Fellowship/src/com/bridgeLabz/objectOrientedPrograms/cards/Cards.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="204" x="332" y="81"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.bridgeLabz.objectOrientedPrograms.cards.DeckOfCardsArray" 
+    project="BL.Fellowship" file="/BL.Fellowship/src/com/bridgeLabz/objectOrientedPrograms/cards/DeckOfCardsArray.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="204" x="576" y="81"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.bridgeLabz.objectOrientedPrograms.cards.Execution" project="BL.Fellowship" 
+    file="/BL.Fellowship/src/com/bridgeLabz/objectOrientedPrograms/cards/Execution.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="204" x="820" y="81"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.bridgeLabz.objectOrientedPrograms.cards.UnsortedCards" project="BL.Fellowship" 
+    file="/BL.Fellowship/src/com/bridgeLabz/objectOrientedPrograms/cards/UnsortedCards.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="204" x="1064" y="81"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
