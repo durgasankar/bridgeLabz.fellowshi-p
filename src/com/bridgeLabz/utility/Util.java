@@ -8,13 +8,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
  * It contains basic reusable methods like => isLeapYear, => isAnagram, =>
  * isPallindrome, => isPrime, => powerOfTwo, => writeToFile, => read file, =>
  * writeFile, => printDate, => getFormattedDate, => reverseString, =>
- * countDigits, => factorial
+ * countDigits, => factorial, => idGenerator
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-13
@@ -23,6 +24,7 @@ import java.util.Scanner;
 public class Util {
 
 	public static Scanner scanner = new Scanner(System.in);
+	private static Random random = new Random();
 
 	/**
 	 * find 2^power given by user
@@ -150,7 +152,6 @@ public class Util {
 			return true;
 		}
 	}
-
 
 	/**
 	 * takes input parameter date in String and returns date in Date format.
@@ -313,6 +314,18 @@ public class Util {
 			}
 			return factorial;
 		}
+	}
+
+	/**
+	 * This function generate random id.
+	 * 
+	 * @return String data
+	 * @created 2019-12-17
+	 */
+	public static String idGnerator() {
+		String inputId = "#Du";
+		inputId += random.nextInt(10000);
+		return inputId;
 	}
 
 }

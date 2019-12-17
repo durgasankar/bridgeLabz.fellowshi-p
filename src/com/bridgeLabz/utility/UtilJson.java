@@ -1,12 +1,17 @@
 package com.bridgeLabz.utility;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  * This class contains JSON utility functionality like => convertJavaToJson, =>
@@ -78,28 +83,44 @@ public class UtilJson {
 		}
 		return result;
 	}
-
 	/**
-	 * This function takes String file path as input parameter and read the data
-	 * present in the file and pall all String data to JSON parser and returns
-	 * objectFile.
-	 * 
-	 * @param filename path as String input parameter
-	 * @return JSON object
-	 * @created 2019-12-08
+	 * This function takes file path and jsonArray as input parameter and 
+	 * @param path as String input parameter
+	 * @param jsonArray as input array parameter
+	 * @created 2019-12-17
 	 */
-	public static JSONObject readDetails(String filename) {
-		String readString = Util.readFile(filename);
-		JSONParser parser = new JSONParser();
-		JSONObject objectFile = null;
+	public static void writeDataToJSONArray(String path, JSONArray jsonArray) {
+		FileWriter fileWritter = null;
 		try {
-			objectFile = (JSONObject) parser.parse(readString);
-			return objectFile;
-		} catch (Exception e) {
-			System.out.println("Exception while reading json file " + e.getMessage());
-		}
-		return null;
+			fileWritter = new FileWriter(path);
+			fileWritter.write(jsonArray.toJSONString());
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
 
+		}
 	}
 
+	/**
+	 * takes file path as input parameter and read the data present in the file and
+	 * convert to JSON array.
+	 * 
+	 * @param filePath as input parameter
+	 * @return JSONArray
+	 * @created 2019-12-17
+	 */
+	public static JSONArray readJSONArray(String filePath) {
+		JSONArray jsonArray = null;
+		FileReader fieReader = null;
+		try {
+			fieReader = new FileReader(filePath);
+			JSONParser jsonParser = new JSONParser();
+			jsonArray = (JSONArray) jsonParser.parse(fieReader);
+		} catch (FileNotFoundException e) {
+			
+		} catch (IOException | ParseException e) {
+			System.out.println(e.getMessage());
+		}
+		return jsonArray;
+
+	}
 }
