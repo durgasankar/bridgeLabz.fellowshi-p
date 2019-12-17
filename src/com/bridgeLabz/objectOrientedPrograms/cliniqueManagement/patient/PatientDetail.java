@@ -1,10 +1,16 @@
 package com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.patient;
 
 public class PatientDetail {
+
 	private String name;
-	private int id;
+	private String id;
 	private long mobileNumber;
 	private int age;
+
+	public PatientDetail() {
+		super();
+
+	}
 
 	public String getName() {
 		return name;
@@ -14,11 +20,11 @@ public class PatientDetail {
 		this.name = name;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -36,21 +42,6 @@ public class PatientDetail {
 
 	public void setAge(int age) {
 		this.age = age;
-	}
-
-	public PatientDetail(String name, int id, long mobileNumber, int age) {
-		this.name = name;
-		this.id = id;
-		this.mobileNumber = mobileNumber;
-		this.age = age;
-	}
-
-	public PatientDetail() {
-		super();
-	}
-
-	public static PatientDetail addPatient(String name, int id, long mobileNumber, int age) {
-		return new PatientDetail(name, id, mobileNumber, age);
 	}
 
 }

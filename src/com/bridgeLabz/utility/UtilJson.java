@@ -15,7 +15,7 @@ import org.json.simple.parser.ParseException;
 
 /**
  * This class contains JSON utility functionality like => convertJavaToJson, =>
- * convertJsonToJava, => readDetails,
+ * convertJsonToJava, => readDetails,=> readJsonArray, => writeDataToJsonArray
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-30
@@ -83,16 +83,17 @@ public class UtilJson {
 		}
 		return result;
 	}
+
 	/**
-	 * This function takes file path and jsonArray as input parameter and 
-	 * @param path as String input parameter
+	 * This function takes file path and jsonArray as input parameter and
+	 * 
+	 * @param path      as String input parameter
 	 * @param jsonArray as input array parameter
 	 * @created 2019-12-17
 	 */
 	public static void writeDataToJSONArray(String path, JSONArray jsonArray) {
-		FileWriter fileWritter = null;
-		try {
-			fileWritter = new FileWriter(path);
+
+		try (FileWriter fileWritter = new FileWriter(path)) {
 			fileWritter.write(jsonArray.toJSONString());
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -109,18 +110,16 @@ public class UtilJson {
 	 * @created 2019-12-17
 	 */
 	public static JSONArray readJSONArray(String filePath) {
-		JSONArray jsonArray = null;
-		FileReader fieReader = null;
-		try {
-			fieReader = new FileReader(filePath);
+		JSONArray jsonArray;
+		try (FileReader fieReader = new FileReader(filePath)) {
 			JSONParser jsonParser = new JSONParser();
 			jsonArray = (JSONArray) jsonParser.parse(fieReader);
+			return jsonArray;
 		} catch (FileNotFoundException e) {
-			
+
 		} catch (IOException | ParseException e) {
-			System.out.println(e.getMessage());
 		}
-		return jsonArray;
+		return null;
 
 	}
 }

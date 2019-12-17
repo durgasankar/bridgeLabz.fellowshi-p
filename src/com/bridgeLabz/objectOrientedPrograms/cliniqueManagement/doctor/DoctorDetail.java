@@ -3,16 +3,10 @@ package com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.doctor;
 public class DoctorDetail {
 
 	private String name;
-	private int id;
+	private String id;
 	private String specialization;
 	private String availability;
-
-	public DoctorDetail(String anme, int id, String specialization, String availability) {
-		this.name = anme;
-		this.id = id;
-		this.specialization = specialization;
-		this.availability = availability;
-	}
+	private int patientCount;
 
 	public DoctorDetail() {
 		super();
@@ -26,11 +20,11 @@ public class DoctorDetail {
 		this.name = name;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -49,9 +43,13 @@ public class DoctorDetail {
 	public void setAvailability(String availability) {
 		this.availability = availability;
 	}
-	
-	public static DoctorDetail addDoctor(String name, int id, String specialization, String availability) {
-		return new DoctorDetail(name, id, specialization, availability);
+
+	public int getPatientCount() {
+		return patientCount;
+	}
+
+	public void setPatientCount(int patientCount) {
+		this.patientCount = patientCount;
 	}
 
 }
