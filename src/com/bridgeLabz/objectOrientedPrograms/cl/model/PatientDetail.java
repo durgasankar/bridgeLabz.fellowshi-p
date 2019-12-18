@@ -1,4 +1,4 @@
-package com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.patient;
+package com.bridgeLabz.objectOrientedPrograms.cl.model;
 
 public class PatientDetail {
 

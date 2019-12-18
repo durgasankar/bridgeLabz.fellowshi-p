@@ -1,4 +1,4 @@
-package com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.doctor;
+package com.bridgeLabz.objectOrientedPrograms.cl.model;
 
 public class DoctorDetail {
 
@@ -6,7 +6,7 @@ public class DoctorDetail {
 	private String id;
 	private String specialization;
 	private String availability;
-	private int patientCount;
+	private long patientCount;
 
 	public DoctorDetail() {
 		super();
@@ -44,11 +44,11 @@ public class DoctorDetail {
 		this.availability = availability;
 	}
 
-	public int getPatientCount() {
+	public long getPatientCount() {
 		return patientCount;
 	}
 
-	public void setPatientCount(int patientCount) {
+	public void setPatientCount(long patientCount) {
 		this.patientCount = patientCount;
 	}
 

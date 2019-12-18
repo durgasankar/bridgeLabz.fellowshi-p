@@ -1,4 +1,4 @@
-package com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.Implementation;
+package com.bridgeLabz.objectOrientedPrograms.cl.Operation;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,12 +8,13 @@ import java.util.Random;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.doctor.DoctorDetail;
-import com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.patient.PatientDetail;
+import com.bridgeLabz.objectOrientedPrograms.cl.model.DoctorDetail;
+import com.bridgeLabz.objectOrientedPrograms.cl.model.PatientDetail;
+import com.bridgeLabz.objectOrientedPrograms.cl.service.ICliniqueService;
 import com.bridgeLabz.utility.Util;
 import com.bridgeLabz.utility.UtilJson;
 
-public class Implementation {
+public class CliniqueOperation implements ICliniqueService {
 	private static final String PATH_DOCTOR = "doctor.json";
 	private static final String PATH_PATIENT = "patient.json";
 	private static final String PATH_APPOINTMENT = "appointment.json";
@@ -21,8 +22,10 @@ public class Implementation {
 	private static JSONObject jsonObject = new JSONObject();
 	private static Random random = new Random();
 
+	@Override
 	@SuppressWarnings("unchecked")
-	public static void addDoctor() {
+	public void addDoctor() {
+		JSONObject jsonObject = new JSONObject();
 		// reading old data from file.
 		if (UtilJson.readJSONArray(PATH_DOCTOR) != null) {
 			jsonArray = UtilJson.readJSONArray(PATH_DOCTOR);
@@ -56,12 +59,13 @@ public class Implementation {
 		jsonObject.put("id", newDoctor.getId());
 		jsonObject.put("specialization", newDoctor.getSpecialization());
 		jsonObject.put("availability", newDoctor.getAvailability());
-		jsonObject.put("patient count", newDoctor.getPatientCount());
+		jsonObject.put("patientCount", newDoctor.getPatientCount());
 		// adding object to json array
 		if (jsonArray.add(jsonObject)) {
 			// writing array data to json file
 			UtilJson.writeDataToJSONArray(PATH_DOCTOR, jsonArray);
-			System.out.println("patient " + newDoctor.getId() + " resistered successfully.\n");
+			System.out.println("Dr." + newDoctor.getName() + "  Hospital Id - " + newDoctor.getId()
+					+ " resistered successfully.\n");
 		} else {
 			System.out.println("Error adding " + newDoctor.getId() + " to file");
 		}
@@ -107,9 +111,11 @@ public class Implementation {
 		return inputId;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
-	public static void addPatient(String patientId, String doctorId) {
+	public void addPatient(String patientId, String doctorId) {
 		// reading old data from file.
+		JSONArray jsonArray = new JSONArray();
 		if (UtilJson.readJSONArray(PATH_PATIENT) != null) {
 			jsonArray = UtilJson.readJSONArray(PATH_PATIENT);
 		}
@@ -152,46 +158,64 @@ public class Implementation {
 
 	}
 
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings({ "unchecked" })
 	private void bookAppointment(JSONObject doctorObject) {
+		// read data
+		JSONArray jsonArray = null;
+		if (UtilJson.readJSONArray(PATH_APPOINTMENT) != null) {
+			jsonArray = UtilJson.readJSONArray(PATH_APPOINTMENT);
+		} else {
+			jsonArray = new JSONArray();
+		}
 		String patientId = "";
 		String doctorId = (String) doctorObject.get("id");
-		int patientCount = (int) doctorObject.get("patientCount");
+		long patientCount = (long) doctorObject.get("patientCount");
+		// date set up
+		LocalDate today = LocalDate.now();
+		LocalDate tomorrow = today.plusDays(1);
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String tomorrowDate = tomorrow.format(format);
+		String todayDate = today.format(format);
+
+//		System.out.println(patientCount + " count.");
 		if (patientCount >= 5) {
-			System.out.println("Doctor is busy take appointment tomorrow...");
-			String tomorrowDate = LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("yyyy-mm-dd"));
+			System.out.println("Doctor is busy take appointment tomorrow...[y/n]");
+
 			String response = Util.scanner.nextLine().toLowerCase().trim();
 			if (response.equals("y")) {
-				int count = 0;
-				JSONArray jsonArray = UtilJson.readJSONArray(PATH_APPOINTMENT);
+
 				JSONObject jsonObject = new JSONObject();
 				patientId = patientIdGnerator();
+				addPatient(patientId, doctorId);
 				jsonObject.put("doctorId", doctorId);
 				jsonObject.put("patientId", patientId);
-				jsonObject.put("appointment date", tomorrowDate);
+				jsonObject.put("appointmentDate", tomorrowDate);
+				jsonArray.add(jsonObject);
+				System.out.println("Appointment of patient id : " + patientId + " sheduled for " + tomorrowDate);
+				UtilJson.writeDataToJSONArray(PATH_APPOINTMENT, jsonArray);
 
-				if (jsonArray.add(jsonObject)) {
-					System.out.println("Appointment of patient id : " + patientId + " sheduled for " + tomorrowDate);
-					UtilJson.writeDataToJSONArray(PATH_APPOINTMENT, jsonArray);
-					// controller main menu
-				} else {
-					System.out.println("Opps... appointment sheduling failed.\n");
-				}
 			}
 
 		} else {
+			JSONObject jsonObject = new JSONObject();
 			patientId = patientIdGnerator();
 			addPatient(patientId, doctorId);
-			doctorObject.put("patient count", patientCount + 1);
+			doctorObject.put("patientCount", patientCount + 1);
 			updateDoctor(doctorObject);
-			System.out.println("Appointment of patient id : " + patientId + "fixed today.");
-
-			// controller main menu
+			//writting data to json
+			jsonObject.put("doctorId", doctorId);
+			jsonObject.put("patientId", patientId);
+			jsonObject.put("appointmentDate", todayDate);
+			jsonArray.add(jsonObject);
+			System.out.println("Appointment of patient id : " + patientId + " fixed today.");
+			UtilJson.writeDataToJSONArray(PATH_APPOINTMENT, jsonArray);
+//			System.out.println("complete");
 
 		}
 
 	}
 
+	@Override
 	public void readPatientDetails(String key, String value) {
 		// reading old data from file.
 		if (UtilJson.readJSONArray(PATH_PATIENT) != null) {
@@ -233,34 +257,56 @@ public class Implementation {
 		UtilJson.writeDataToJSONArray(PATH_DOCTOR, updatedArray);
 	}
 
+	@Override
 	public void readDoctorDetails(String key, String value) {
 		// reading old data from file.
-		if (UtilJson.readJSONArray(PATH_DOCTOR) != null) {
-			jsonArray = UtilJson.readJSONArray(PATH_DOCTOR);
-			@SuppressWarnings("rawtypes")
-			Iterator iterator = jsonArray.iterator();
-			@SuppressWarnings("unused")
-			JSONObject patientObject;
-			while (iterator.hasNext()) {
-				if ((patientObject = (JSONObject) iterator.next()).containsKey(value)) {
-					System.out.println("\n patient details :");
-					System.out.println("id : " + jsonObject.get("id") + "\t");
-					System.out.println("specialization : " + jsonObject.get("specialization") + "\t");
-					System.out.println("availability : " + jsonObject.get("availability") + "\t");
-					System.out.println("patientCount : " + jsonObject.get("patientCount") + "\t");
-				}
-			}
-//			Clinique.menu
+		JSONArray readOldFile = UtilJson.readJSONArray(PATH_DOCTOR);
+		if (readOldFile == null) {
+			System.out.println("Empty list.. plz add doctor.");
+			return;
 		}
-		System.out.println("Empty list.. plz add doctor.");
+		jsonArray = UtilJson.readJSONArray(PATH_DOCTOR);
+		@SuppressWarnings("rawtypes")
+		Iterator iterator = jsonArray.iterator();
+		JSONObject currentDoctorObject = null;
+		JSONObject previousDoctorObject = null;
+		int doctorCount = 1;
+
+		while (iterator.hasNext()) {
+
+			if ((currentDoctorObject = (JSONObject) iterator.next()).get(key).equals(value)) {
+				previousDoctorObject = currentDoctorObject;
+				System.out.println("\nDoctor No : " + doctorCount++ + "\n--------------");
+				System.out.println("id : " + currentDoctorObject.get("id") + "\t");
+				System.out.println("name :" + currentDoctorObject.get("name") + "\t");
+				System.out.println("specialization : " + currentDoctorObject.get("specialization") + "\t");
+				System.out.println("availability : " + currentDoctorObject.get("availability") + "\t");
+				System.out.println("patientCount : " + currentDoctorObject.get("patientCount") + "\t");
+
+				System.out.println("Do you want to take appointment : [y/n]");
+				String appointmentChoice = Util.scanner.next();
+				Util.scanner.nextLine();
+				if (appointmentChoice.equalsIgnoreCase("y")) {
+					bookAppointment(previousDoctorObject);
+					System.out.println("with Dr." + previousDoctorObject.get("name"));
+				} else {
+					System.out.println("Not a problem...");
+					return;
+				}
+
+			}
+		}
+
+//			Clinique.menu
+
 	}
 
-	public static void main(String[] args) {
-
-//		Implementation.addPatient();
-		Implementation.addDoctor();
-//		Implementation.addDoctor();
-//		readPatientDetails();
-	}
+//	public static void main(String[] args) {
+//
+////		Implementation.addPatient();
+////		Implementation.addDoctor();
+////		Implementation.addDoctor();
+////		readPatientDetails();
+//	}
 
 }
