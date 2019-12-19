@@ -24,7 +24,7 @@ public class Implementation {
 		boolean isQuitApplication = false;
 		while (!isQuitApplication) {
 			System.out.println(
-					"Enter action :\n1-> login as company. 2-> login as customer. 3-> Quit application. 4-> display dateTime transaction. 5-> display sell sybol transaction.");
+					"Enter action :\n1-> login as company. 2-> login as customer. 3-> Quit application.\n4-> display dateTime transaction. 5-> display share symbol transaction. 6-> listed company.");
 			int action = Util.scanner.nextInt();
 			switch (action) {
 			case 1:
@@ -47,6 +47,11 @@ public class Implementation {
 			case 5:
 				System.out.println("Recent Symbol transactions.");
 				Transaction.displaySymbolRecord();
+				break;
+
+			case 6:
+				System.out.println("Company listed on market :");
+				Transaction.displayCompanyNames();
 				break;
 
 			default:
