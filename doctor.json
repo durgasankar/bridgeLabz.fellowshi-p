@@ -12,5 +12,12 @@
 		"patientCount": 2,
 		"id": "#Dr72",
 		"availability": "pm"
+	},
+	{
+		"name": "sharma",
+		"specialization": "cardio",
+		"patientCount": 2,
+		"id": "#Dr29",
+		"availability": "am"
 	}
 ]

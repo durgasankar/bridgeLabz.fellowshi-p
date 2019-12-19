@@ -14,6 +14,19 @@ import com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.service.ICliniqu
 import com.bridgeLabz.utility.Util;
 import com.bridgeLabz.utility.UtilJson;
 
+/**
+ * This class has the implementation of service interface which give the access
+ * of functionality of adding a doctor to the hospital allows the patient to
+ * search for doctor and take appointment with that doctor. if doctor exceeds
+ * the limit of 5 patient then shifts the appointment to next day . all details
+ * of patient, doctor and appointments are listed on JSON file. It has
+ * functionality of displaying all doctors and patients and doctors associated
+ * with the hospital.
+ * 
+ * @author Durgasankar Mishra
+ * @created 2019-12-19
+ * @version 1.8
+ */
 public class CliniqueOperation implements ICliniqueService {
 	private static final String PATH_DOCTOR = "doctor.json";
 	private static final String PATH_PATIENT = "patient.json";
@@ -21,9 +34,14 @@ public class CliniqueOperation implements ICliniqueService {
 	private static JSONArray globalJsonArray = new JSONArray();
 	private static Random random = new Random();
 
+	/**
+	 * Implementation of adding a doctor to the hospital which ask to fill name,
+	 * specialization, availability timing and after successful addition of the
+	 * doctor to the hospital with id display confirmation message to the user and
+	 * writes to the JSON file of the doctor
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
-
 	public void addDoctor() {
 		JSONObject doctorJsonObject = new JSONObject();
 		// reading old data from file.
@@ -111,6 +129,16 @@ public class CliniqueOperation implements ICliniqueService {
 		return inputId;
 	}
 
+	/**
+	 * This function takes doctor id and patient id as input parameter and Add a
+	 * patient to the hospital with assigned doctor to that patient, and ask to fill
+	 * name, age, mobile number and after successful addition of the patient to the
+	 * hospital with id display confirmation message to the user and writes to the
+	 * JSON file of the patient
+	 * 
+	 * @param patientId as String Input parameter
+	 * @param doctorId  as String input parameter
+	 */
 	@SuppressWarnings("unchecked")
 	private void addPatient(String patientId, String doctorId) {
 		// reading old data from file.
@@ -158,6 +186,14 @@ public class CliniqueOperation implements ICliniqueService {
 
 	}
 
+	/**
+	 * This function takes doctor object as input parameter and checks for
+	 * appointment path if not empty then checks whether doctor has 5 patient or
+	 * more for checking then on the basis of that it fix the appointment of the
+	 * patient if doctor not busy then fix appointment date to next day.
+	 * 
+	 * @param doctorObject as JSON object of doctor
+	 */
 	@SuppressWarnings({ "unchecked" })
 	private void bookAppointment(JSONObject doctorObject) {
 		// read data from appointment path
@@ -212,6 +248,11 @@ public class CliniqueOperation implements ICliniqueService {
 
 	}
 
+	/**
+	 * This method takes key and value as input parameter and read the patient JSON
+	 * file if not empty then fetch particular Patient object and display the
+	 * content to the user.
+	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void readPatientDetails(String key, String value) {
@@ -236,7 +277,13 @@ public class CliniqueOperation implements ICliniqueService {
 
 	}
 
-	
+	/**
+	 * This function read JSON file of doctor from global and after fetching update
+	 * doctor object by iterating to end update the doctor information. file of the
+	 * doctor.
+	 * 
+	 * @param currentDoctorObject
+	 */
 	@SuppressWarnings("unchecked")
 	private void updateDoctor(JSONObject currentDoctorObject) {
 		globalJsonArray = UtilJson.readJSONArray(PATH_DOCTOR);
@@ -256,9 +303,15 @@ public class CliniqueOperation implements ICliniqueService {
 		UtilJson.writeDataToJSONArray(PATH_DOCTOR, updatedArray);
 	}
 
+	/**
+	 * This is the implemented functionality which takes key and value as input
+	 * parameter of doctor and search the particular doctor and ask the user to
+	 * proceed with appointment procedure.
+	 * 
+	 */
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void readDoctorDetails(String key, String value) {
+	public void searchDoctorBookAppointment(String key, String value) {
 		// reading old data from file.
 		JSONArray readOldFile = UtilJson.readJSONArray(PATH_DOCTOR);
 		if (readOldFile == null) {
@@ -270,7 +323,7 @@ public class CliniqueOperation implements ICliniqueService {
 		JSONObject currentDoctorObject = null;
 		JSONObject previousDoctorObject = null;
 		int doctorCount = 1;
-
+		// searching doc storing.
 		while (iterator.hasNext()) {
 
 			if ((currentDoctorObject = (JSONObject) iterator.next()).get(key).equals(value)) {
@@ -281,20 +334,29 @@ public class CliniqueOperation implements ICliniqueService {
 				System.out.println("specialization : " + currentDoctorObject.get("specialization") + "\t");
 				System.out.println("availability : " + currentDoctorObject.get("availability") + "\t");
 				System.out.println("patientCount : " + currentDoctorObject.get("patientCount") + "\t");
-
 				System.out.println("Do you want to take appointment : [y/n]");
-				String appointmentChoice = Util.scanner.next().trim();
-				Util.scanner.nextLine();
-				if (appointmentChoice.equalsIgnoreCase("y")) {
-					bookAppointment(previousDoctorObject);
-				} else {
-					System.out.println("Not a problem...");
-					return;
-				}
 			}
+		}
+		// if doc not found
+		if (previousDoctorObject == null) {
+			System.out.println("Opps. doctor not associated with Hospital...");
+			return;
+		}
+		// doc found and proceed with appointment
+		String appointmentChoice = Util.scanner.next().trim();
+		Util.scanner.nextLine();
+		if (appointmentChoice.equalsIgnoreCase("y")) {
+			bookAppointment(previousDoctorObject);
+		} else {
+			System.out.println("Not a problem...");
+			return;
 		}
 	}
 
+	/**
+	 * This is the implementation functionality of displaying all details of doctors
+	 * associated with the hospital.
+	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void printDoctorList() {
@@ -320,6 +382,10 @@ public class CliniqueOperation implements ICliniqueService {
 
 	}
 
+	/**
+	 * This is the implementation functionality of displaying all details of
+	 * patients associated with the hospital
+	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void printPatientList() {

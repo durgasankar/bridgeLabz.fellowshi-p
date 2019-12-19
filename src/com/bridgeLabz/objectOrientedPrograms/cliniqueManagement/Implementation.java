@@ -4,6 +4,13 @@ import com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.Operation.Cliniq
 import com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.service.ICliniqueService;
 import com.bridgeLabz.utility.Util;
 
+/**
+ * Implementation of the Clinic management System.
+ * 
+ * @author Durgasankar Mishra
+ * @created 2019-12-19
+ * @version 1.8
+ */
 public class Implementation {
 	private static ICliniqueService service = new CliniqueOperation();
 
@@ -60,6 +67,9 @@ public class Implementation {
 
 	}
 
+	/**
+	 * Instructors displayed to the user to use the application.
+	 */
 	public static void printInstructions() {
 		System.out.println("Available actions :\npress :");
 		System.out.println("\t1 -> add doctor to list. \n" + "\t2 -> Book Appointment.\n"
@@ -69,8 +79,13 @@ public class Implementation {
 		System.out.println("choose your action :");
 	}
 
+	/**
+	 * This function allows the user to search doctor on the basis of name, id,
+	 * specialization,availability. if found then proceed with appointment
+	 * procedure.
+	 */
 	public static void searchDoctorAndBookAppointment() {
-		System.out.println("press to search by : 1 -> name, 2 -> id, 3 -> specialization, 4 -> availability ");
+		System.out.println("press to search by : 1 -> name, 2 -> id");
 		System.out.println("please Enter your choice");
 		int choice = Util.scanner.nextInt();
 		switch (choice) {
@@ -79,39 +94,43 @@ public class Implementation {
 			System.out.println("Please Enter Doctor name :");
 			String docName = Util.scanner.next();
 			Util.scanner.nextLine();
-			service.readDoctorDetails("name", docName);
+			service.searchDoctorBookAppointment("name", docName);
 			break;
 
 		case 2:
 			System.out.println("Please Enter Doctor id :");
 			String docId = Util.scanner.nextLine();
 			Util.scanner.nextLine();
-			service.readDoctorDetails("id", docId);
+			service.searchDoctorBookAppointment("id", docId);
 			// search by id
 			break;
 
-		case 3:
-			System.out.println("Please Enter Doctor specialization :");
-			String docSpecialization = Util.scanner.next();
-			Util.scanner.nextLine();
-			service.readDoctorDetails("specialization", docSpecialization);
-			// search by specialization
-			break;
-
-		case 4:
-			System.out.println("Please Enter Doctor availability time am/pm/both :");
-			String docAvailability = Util.scanner.next();
-			Util.scanner.nextLine();
-			service.readDoctorDetails("availability", docAvailability);
-			// search by availability
-			break;
-
+//		case 3:
+//			System.out.println("Please Enter Doctor specialization :");
+//			String docSpecialization = Util.scanner.next();
+//			Util.scanner.nextLine();
+//			service.searchDoctorBookAppointment("specialization", docSpecialization);
+//			// search by specialization
+//			break;
+//
+//		case 4:
+//			System.out.println("Please Enter Doctor availability time am/PM/both :");
+//			String docAvailability = Util.scanner.next();
+//			Util.scanner.nextLine();
+//			service.searchDoctorBookAppointment("availability", docAvailability);
+//			// search by availability
+//			break;
+//
 		default:
 			System.out.println("Please follow instructions...");
 			break;
 		}
 	}
 
+	/**
+	 * This function allows the user to search patients on the basis of name, id,
+	 * phone number if found then display all information of that patient.
+	 */
 	public static void searchPatientDetails() {
 		System.out.println("press to search by : 1 -> name, 2 -> id, 3 -> mobileNumber ");
 		System.out.println("please Enter your choice");
@@ -137,7 +156,7 @@ public class Implementation {
 			System.out.println("Please Enter patient mobile Number :");
 			String mobile = Util.scanner.next();
 			Util.scanner.nextLine();
-			service.readDoctorDetails("mobile", mobile);
+			service.searchDoctorBookAppointment("mobile", mobile);
 			// search by mobile number
 			break;
 
