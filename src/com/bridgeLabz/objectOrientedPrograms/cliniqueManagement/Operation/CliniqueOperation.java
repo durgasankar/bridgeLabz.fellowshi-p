@@ -1,4 +1,4 @@
-package com.bridgeLabz.objectOrientedPrograms.cl.Operation;
+package com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.Operation;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,9 +8,9 @@ import java.util.Random;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.bridgeLabz.objectOrientedPrograms.cl.model.DoctorDetail;
-import com.bridgeLabz.objectOrientedPrograms.cl.model.PatientDetail;
-import com.bridgeLabz.objectOrientedPrograms.cl.service.ICliniqueService;
+import com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.model.DoctorDetail;
+import com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.model.PatientDetail;
+import com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.service.ICliniqueService;
 import com.bridgeLabz.utility.Util;
 import com.bridgeLabz.utility.UtilJson;
 
@@ -112,8 +112,7 @@ public class CliniqueOperation implements ICliniqueService {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
-	public void addPatient(String patientId, String doctorId) {
+	private void addPatient(String patientId, String doctorId) {
 		// reading old data from file.
 		JSONArray jsonArray = new JSONArray();
 		JSONObject patientJsonObject = new JSONObject();
@@ -237,6 +236,7 @@ public class CliniqueOperation implements ICliniqueService {
 
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	private void updateDoctor(JSONObject currentDoctorObject) {
 		globalJsonArray = UtilJson.readJSONArray(PATH_DOCTOR);
@@ -295,31 +295,54 @@ public class CliniqueOperation implements ICliniqueService {
 		}
 	}
 
-	private static void printPatientList() {
+	@SuppressWarnings("rawtypes")
+	@Override
+	public void printDoctorList() {
+		JSONArray readOldFileArray = UtilJson.readJSONArray(PATH_DOCTOR);
+		if (readOldFileArray == null) {
+			System.out.println("Empty list.. plz add doctor.");
+			return;
+		}
+		Iterator iterator = readOldFileArray.iterator();
+		JSONObject jsonDoctorObject;
+		int count = 1;
+		System.out.println("All Doctors associated with hospital :\n---------------------------------------");
+		while (iterator.hasNext()) {
+			jsonDoctorObject = (JSONObject) iterator.next();
+			System.out.println("Doctor No : " + count++ + "\n--------------");
+			System.out.println("id\t: " + jsonDoctorObject.get("id"));
+			System.out.println("name\t: " + jsonDoctorObject.get("name"));
+			System.out.println("Dept\t: " + jsonDoctorObject.get("specialization"));
+			System.out.println("Timing\t: " + jsonDoctorObject.get("availability"));
+			System.out.println("Patient\t: " + jsonDoctorObject.get("patientCount"));
+			System.out.println();
+		}
+
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public void printPatientList() {
 		JSONArray readOldFileArray = UtilJson.readJSONArray(PATH_PATIENT);
 		if (readOldFileArray == null) {
 			System.out.println("Empty list.. plz add doctor.");
 			return;
 		}
 		Iterator iterator = readOldFileArray.iterator();
-		JSONObject jsonObject;
+		JSONObject jsonPatientObject;
 		int count = 1;
 		System.out.println("All patients resisted with hospital :\n------------------------------------");
 		while (iterator.hasNext()) {
-			jsonObject = (JSONObject) iterator.next();
+			jsonPatientObject = (JSONObject) iterator.next();
 			System.out.println("patient No : " + count++ + "\n---------------");
-			System.out.println("id\t: " + jsonObject.get("id"));
-			System.out.println("name\t: " + jsonObject.get("name"));
-			System.out.println("mobile\t: " + jsonObject.get("mobile"));
-			System.out.println("age\t: " + jsonObject.get("age"));
-			System.out.println("doctor\t: " + jsonObject.get("doctorId"));
+			System.out.println("id\t: " + jsonPatientObject.get("id"));
+			System.out.println("name\t: " + jsonPatientObject.get("name"));
+			System.out.println("mobile\t: " + jsonPatientObject.get("mobile"));
+			System.out.println("age\t: " + jsonPatientObject.get("age"));
+			System.out.println("doctor\t: " + jsonPatientObject.get("doctorId"));
 			System.out.println();
 		}
 
 	}
-	
-//
-//	public static void main(String[] args) {
-//		printPatientList();
-//	}
+
 }

@@ -1,7 +1,7 @@
-package com.bridgeLabz.objectOrientedPrograms.cl;
+package com.bridgeLabz.objectOrientedPrograms.cliniqueManagement;
 
-import com.bridgeLabz.objectOrientedPrograms.cl.Operation.CliniqueOperation;
-import com.bridgeLabz.objectOrientedPrograms.cl.service.ICliniqueService;
+import com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.Operation.CliniqueOperation;
+import com.bridgeLabz.objectOrientedPrograms.cliniqueManagement.service.ICliniqueService;
 import com.bridgeLabz.utility.Util;
 
 public class Implementation {
@@ -43,6 +43,16 @@ public class Implementation {
 				// quit application
 				break;
 
+			case 6:
+				service.printDoctorList();
+				// print all doctor list
+				break;
+
+			case 7:
+				service.printPatientList();
+				// print all patient list
+				break;
+
 			default:
 				System.out.println("please read instrutions!");
 			}
@@ -53,7 +63,9 @@ public class Implementation {
 	public static void printInstructions() {
 		System.out.println("Available actions :\npress :");
 		System.out.println("\t1 -> add doctor to list. \n" + "\t2 -> Book Appointment.\n"
-				+ "\t3 -> Search patient details\n" + "\t4 -> print instructions.\n" + "\t5 -> Quit the application\n");
+				+ "\t3 -> Search patient details\n" + "\t4 -> print instructions.\n" + "\t5 -> Quit the application\n"
+				+ "\t6 -> print doctor List associated with hospital\n"
+				+ "\t7 -> print patient List associated with hospital\n");
 		System.out.println("choose your action :");
 	}
 
