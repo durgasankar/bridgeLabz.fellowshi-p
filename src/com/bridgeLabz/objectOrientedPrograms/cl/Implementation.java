@@ -23,8 +23,8 @@ public class Implementation {
 				break;
 
 			case 2:
-				searchDoctorAndAddPatient();
-				// search available doctors
+				searchDoctorAndBookAppointment();
+				// search available doctors and book appointment
 				break;
 
 			case 3:
@@ -52,12 +52,12 @@ public class Implementation {
 
 	public static void printInstructions() {
 		System.out.println("Available actions :\npress :");
-		System.out.println("\t1 -> add doctor to list. \n" + "\t2 -> Search available doctors.\n"
+		System.out.println("\t1 -> add doctor to list. \n" + "\t2 -> Book Appointment.\n"
 				+ "\t3 -> Search patient details\n" + "\t4 -> print instructions.\n" + "\t5 -> Quit the application\n");
 		System.out.println("choose your action :");
 	}
 
-	public static void searchDoctorAndAddPatient() {
+	public static void searchDoctorAndBookAppointment() {
 		System.out.println("press to search by : 1 -> name, 2 -> id, 3 -> specialization, 4 -> availability ");
 		System.out.println("please Enter your choice");
 		int choice = Util.scanner.nextInt();
@@ -107,14 +107,14 @@ public class Implementation {
 		switch (choice) {
 		case 1:
 			// search by name
-			System.out.println("Please Enter Doctor name :");
+			System.out.println("Please Enter Patient name :");
 			String patName = Util.scanner.next();
 			Util.scanner.nextLine();
 			service.readPatientDetails("name", patName);
 			break;
 
 		case 2:
-			System.out.println("Please Enter Doctor id :");
+			System.out.println("Please Enter patient id :");
 			String patId = Util.scanner.nextLine();
 			Util.scanner.nextLine();
 			service.readPatientDetails("id", patId);
@@ -122,7 +122,7 @@ public class Implementation {
 			break;
 
 		case 3:
-			System.out.println("Please Enter Doctor specialization :");
+			System.out.println("Please Enter patient mobile Number :");
 			String mobile = Util.scanner.next();
 			Util.scanner.nextLine();
 			service.readDoctorDetails("mobile", mobile);

@@ -1,9 +1,16 @@
 [
 	{
 		"name": "raja",
-		"specialization": "btech",
-		"patientCount": 0,
-		"id": "#Dr5",
+		"specialization": "cardio",
+		"patientCount": 5,
+		"id": "#Dr52",
+		"availability": "pm"
+	},
+	{
+		"name": "vishal",
+		"specialization": "gyno",
+		"patientCount": 2,
+		"id": "#Dr72",
 		"availability": "pm"
 	}
 ]
