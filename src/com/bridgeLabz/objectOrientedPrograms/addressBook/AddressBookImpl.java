@@ -1,5 +1,8 @@
 package com.bridgeLabz.objectOrientedPrograms.addressBook;
 
+import com.bridgeLabz.objectOrientedPrograms.addressBook.model.Contact;
+import com.bridgeLabz.objectOrientedPrograms.addressBook.operation.AddressBookOperations;
+import com.bridgeLabz.objectOrientedPrograms.addressBook.service.IOperation;
 import com.bridgeLabz.utility.Util;
 
 /**
@@ -17,7 +20,7 @@ import com.bridgeLabz.utility.Util;
  * @updated -> allows user to update on basis of email, phone number, address.
  * @version 11.0.5
  */
-public class AddressBook {
+public class AddressBookImpl {
 	private static IOperation myAddressBook = new AddressBookOperations();
 	private static final String ADDRESSBOOK_NAME = "jsonAddressBook.json";
 

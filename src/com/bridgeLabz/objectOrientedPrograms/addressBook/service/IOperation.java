@@ -1,4 +1,6 @@
-package com.bridgeLabz.objectOrientedPrograms.addressBook;
+package com.bridgeLabz.objectOrientedPrograms.addressBook.service;
+
+import com.bridgeLabz.objectOrientedPrograms.addressBook.model.Contact;
 
 /**
  * This interface has some unimplemented methods.

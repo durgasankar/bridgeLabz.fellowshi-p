@@ -1,4 +1,4 @@
-package com.bridgeLabz.objectOrientedPrograms.addressBook;
+package com.bridgeLabz.objectOrientedPrograms.addressBook.model;
 
 /**
  * This class has the functionality of first name , last name , email , address
