@@ -94,6 +94,7 @@ public class AddressBookOperations implements IOperation {
 		int foundPosition = findContact(oldContact);
 		if (foundPosition < 0) {
 			System.out.println(oldContact.toString() + " was not found!");
+			return false;
 		}
 		addressBook.set(foundPosition, newContact);
 		return true;
@@ -152,12 +153,16 @@ public class AddressBookOperations implements IOperation {
 	@Override
 	public void printIndetailContact() {
 		System.out.println("contact list :");
-		for (int i = 0; i < addressBook.size(); i++) {
-			System.out.println((i + 1) + ". First Name -> " + addressBook.get(i).getFirstName() + "\n   Last Name -> "
-					+ addressBook.get(i).getLastName() + "\n   Address -> " + addressBook.get(i).getAddress()
-					+ "\n   Email id -> " + addressBook.get(i).getEmail() + "\n   mobile no -> "
-					+ addressBook.get(i).getPhoneNumber());
-		}
+//		for (int i = 0; i < addressBook.size(); i++) {
+//			System.out.println((i + 1) + ". First Name -> " + addressBook.get(i).getFirstName() + "\n   Last Name -> "
+//					+ addressBook.get(i).getLastName() + "\n   Address -> " + addressBook.get(i).getAddress()
+//					+ "\n   Email id -> " + addressBook.get(i).getEmail() + "\n   mobile no -> "
+//					+ addressBook.get(i).getPhoneNumber());
+//		}
+		int addressCount = 0;
+		addressBook.forEach(i -> System.out.println((addressCount + 1) + ". First Name -> " + i.getFirstName()
+				+ "\n   Last Name -> " + i.getLastName() + "\n   Address -> " + i.getAddress() + "\n   Email id -> "
+				+ i.getEmail() + "\n   mobile no -> " + i.getPhoneNumber()));
 	}
 
 	/**
@@ -166,9 +171,12 @@ public class AddressBookOperations implements IOperation {
 	@Override
 	public void printFullName() {
 		System.out.println("contact list :");
-		for (int i = 0; i < addressBook.size(); i++) {
-			System.out.println((i + 1) + " . " + addressBook.get(i).toString());
-		}
+//		for (int i = 0; i < addressBook.size(); i++) {
+//			System.out.println((i + 1) + " . " + addressBook.get(i).toString());
+//		}
+		int addressCount = 0;
+		addressBook.forEach(i -> System.out.println((addressCount + 1) + ". First Name -> " + i.getFirstName()
+				+ "\n   Last Name -> " + i.getLastName()));
 	}
 
 	/**

@@ -1,1 +1,16 @@
-[{"name":"mukesh","symbol":"mm","price":750.0,"quantity":610,"dateTime":"21/12/2019 11:06:20"},{"name":"ramesh","symbol":"ll","price":753.0,"quantity":100,"dateTime":"21/12/2019 11:04:25"}]
+[
+	{
+		"name": "mukesh",
+		"symbol": "mm",
+		"price": 750.0,
+		"quantity": 610,
+		"dateTime": "21/12/2019 11:06:20"
+	},
+	{
+		"name": "ramesh",
+		"symbol": "ll",
+		"price": 753.0,
+		"quantity": 100,
+		"dateTime": "21/12/2019 11:04:25"
+	}
+]

@@ -2,22 +2,15 @@
 	{
 		"name": "raja",
 		"specialization": "cardio",
-		"patientCount": 5,
-		"id": "#Dr52",
-		"availability": "pm"
+		"patientCount": 4,
+		"id": "#Dr44",
+		"availability": "both"
 	},
 	{
-		"name": "vishal",
-		"specialization": "gyno",
-		"patientCount": 2,
-		"id": "#Dr72",
-		"availability": "pm"
-	},
-	{
-		"name": "sharma",
-		"specialization": "cardio",
-		"patientCount": 2,
-		"id": "#Dr29",
+		"name": "mm",
+		"specialization": "dermatology",
+		"patientCount": 0,
+		"id": "#Dr70",
 		"availability": "am"
 	}
 ]
