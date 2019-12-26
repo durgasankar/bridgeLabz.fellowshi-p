@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -26,7 +25,7 @@ public class UtilJson {
 
 	private static ObjectMapper mapper;
 	/**
-	 * object will created only one time.
+	 * object will created only one time during class loading time.
 	 */
 	static {
 		mapper = new ObjectMapper();

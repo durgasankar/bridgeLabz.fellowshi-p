@@ -1,16 +1,1 @@
-[
-	{
-		"name": "raja",
-		"specialization": "cardio",
-		"patientCount": 4,
-		"id": "#Dr44",
-		"availability": "both"
-	},
-	{
-		"name": "mm",
-		"specialization": "dermatology",
-		"patientCount": 0,
-		"id": "#Dr70",
-		"availability": "am"
-	}
-]
+[{"name":"raja","specialization":"cardio","patientCount":5,"id":"#Dr58","availability":"am"},{"name":"mm","specialization":"ortho","patientCount":0,"id":"#Dr15","availability":"am"}]

@@ -379,7 +379,7 @@ public class CliniqueOperation implements ICliniqueService {
 			System.out.println("Patient\t: " + jsonDoctorObject.get("patientCount"));
 			System.out.println();
 		}
-
+		
 	}
 
 	/**
