@@ -2,6 +2,13 @@ package com.bridgeLabz.functionalPrograms;
 
 import com.bridgeLabz.utility.Util;
 
+/**
+ * This class has the functionality of Finding sum of three numbers.
+ * 
+ * @author Durgasankar Mishra
+ * @created 2019-11-13
+ * @version 1.0
+ */
 public class SumOfThreeIntegers {
 	public static void main(String[] args) {
 		System.out.println("Enter the length of array : ");
@@ -18,6 +25,11 @@ public class SumOfThreeIntegers {
 
 	}
 
+	/**
+	 * Finding triplets.
+	 * 
+	 * @param arr as Integer array
+	 */
 	private static void findTriplet(int[] arr) {
 		boolean found = false;
 		for (int i = 0; i < arr.length - 2; i++) {

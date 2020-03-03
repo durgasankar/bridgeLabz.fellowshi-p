@@ -8,9 +8,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/durgasankar/eclipse-workspace/BL.Fellowship/jars/jackson-core-asl-1.9.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/durgasankar/eclipse-workspace/BL.Fellowship/jars/jackson-mapper-asl-1.9.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/durgasankar/eclipse-workspace/BL.Fellowship/jars/json-simple-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/durgasankar/eclipse-workspace/BL.Fellowship/jars/mysql-connector-java-8.0.18.jar"/>
+	<classpathentry kind="lib" path="/home/bridgelabz/eclipse-workspace/BL.Fellowship/jars/jackson-core-asl-1.9.13.jar"/>
+	<classpathentry kind="lib" path="/home/bridgelabz/eclipse-workspace/BL.Fellowship/jars/jackson-mapper-asl-1.9.13.jar"/>
+	<classpathentry kind="lib" path="/home/bridgelabz/eclipse-workspace/BL.Fellowship/jars/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/bridgelabz/eclipse-workspace/BL.Fellowship/jars/mysql-connector-java-5.1.38 .jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

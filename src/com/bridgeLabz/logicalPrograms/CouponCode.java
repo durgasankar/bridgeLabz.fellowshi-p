@@ -3,16 +3,17 @@ package com.bridgeLabz.logicalPrograms;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * User gives the input by using Scanner Class of length of Coupon code
+ * required. Randomly the coupon code is generated from Upper case, Lower case
+ * and numeric values.
+ * 
+ * @author durgasankar Mishra
+ * @created 2019-11-13
+ * @version 1.0
+ */
 public class CouponCode {
-	/**
-	 * User gives the input by using Scanner Class of length of Coupon code
-	 * required. Randomly the coupon code is generated from Upper case, Lower case
-	 * and numeric values.
-	 * 
-	 * @author durgasankar Mishra
-	 * @created 2019-11-13
-	 * @version 1.0
-	 */
+
 	private static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {

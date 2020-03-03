@@ -3,6 +3,13 @@ package com.bridgeLabz.functionalPrograms;
 import com.bridgeLabz.utility.Array;
 import com.bridgeLabz.utility.Util;
 
+/**
+ * This class has the functionality displaying 2D array.
+ * 
+ * @author Durgasankar Mishra
+ * @created 2019-11-15
+ * @version 1.0
+ */
 public class TwoDArray {
 
 	public static void main(String[] args) {

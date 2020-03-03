@@ -9,7 +9,7 @@ import java.util.Scanner;
  * 
  * @author Durgasankar Mishra
  * @created 2019-11-14
- * @version 11.05.0
+ * @version 1.0
  */
 public class TicTacToe {
 	private static Scanner scanner = new Scanner(System.in);

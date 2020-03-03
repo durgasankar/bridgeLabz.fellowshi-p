@@ -1,30 +1,42 @@
 package com.bridgeLabz.functionalPrograms;
 
-import java.util.Scanner;
+import com.bridgeLabz.utility.Util;
 
+/**
+ * This class has the functionality of wind chill operation.
+ * 
+ * @author Durgasankar Mishra
+ * @created 2019-11-15
+ * @version 1.0
+ */
 public class WindChill {
-	private static Scanner sc = new Scanner(System.in);
-
 	public static void main(String[] args) {
 		System.out.println("Eneter temp : ");
-		int t = sc.nextInt();
+		int temperature = Util.scanner.nextInt();
 		System.out.println("Enter velocity : ");
-		int v = sc.nextInt();
+		int velocity = Util.scanner.nextInt();
 
-		windChill(t, v);
+		windChill(temperature, velocity);
 
 	}
 
-	private static boolean windChill(int t, int v) {
-		if (Math.abs(t) < 50) {
-			if (v > 120 && v < 3) {
+	/**
+	 * 
+	 * @param temperature as Integer
+	 * @param velocity    as Integer
+	 * @return Boolean
+	 */
+	private static boolean windChill(int temperature, int velocity) {
+		if (Math.abs(temperature) < 50) {
+			if (velocity > 120 && velocity < 3) {
 				System.out.println("Opps... Invalid");
 				return false;
 			} else {
-				double w = 35.74 + 0.6215 * t + (0.4275 * t - 35.75) * Math.pow(v, 0.16);
-				System.out.println("Temperature = " + t);
-				System.out.println("Wind speed  = " + v);
-				System.out.println("Wind chill  = " + w);
+				double windChill = 35.74 + 0.6215 * temperature
+						+ (0.4275 * temperature - 35.75) * Math.pow(velocity, 0.16);
+				System.out.println("Temperature = " + temperature);
+				System.out.println("Wind speed  = " + velocity);
+				System.out.println("Wind chill  = " + windChill);
 				return true;
 			}
 		} else {

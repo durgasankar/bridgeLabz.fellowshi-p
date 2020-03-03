@@ -4,22 +4,18 @@ import java.util.InputMismatchException;
 
 import com.bridgeLabz.utility.Util;
 
+/**
+ * This class has the functionality of creating stop watch.
+ * 
+ * @author Durgasankar Mishra
+ * @created 2019-11-13
+ * @version 1.0
+ */
 public class StopWatch {
 
 	private long startTime = 0;
 	private long stopTime = 0;
 	private boolean running = false;
-
-	// when using this method it is not working on start time. result => 0:0:0
-//	private String timeFormat(long timeInMillis) {
-//		long millis = stopTime % 1000;
-//		long second = (stopTime / 1000) % 60;
-//		long minute = (stopTime / (1000 * 60)) % 60;
-//		long hour = (stopTime / (1000 * 60 * 60)) % 24;
-//
-//		String time = String.format("%02d h :%02d m :%02d.%d s ", hour, minute, second, millis);
-//		return time;
-//	}
 
 	/**
 	 * it captures the current System time in milliseconds.
